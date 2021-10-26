@@ -6,7 +6,7 @@
     <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    THÊM LOẠI SẢN PHẨM
+                    CẬP NHẬP LOẠI SẢN PHẨM
                 </header>
                 @if(count($errors)>0)
                    <div class="alert alert-danger">
@@ -19,35 +19,36 @@
                        </ul>
                     </div>
                 @endif
-                <div class="panel-body">
-                    <?php
+                <?php
                     $mess =Session::get('message');
                     if($mess)
                     {
                         echo'<span class="text-alert">'.$mess.'</span>';
                         Session::put('message',null);
                     }
-                    ?>
+                ?>
+                <div class="panel-body">  
+                    @foreach($edit_category as $key => $edit_value)
                     <div class="position-center">
-                        <form role="form"   method="POST" action="{{ URL::to('/save-category-product') }}">
+                        <form role="form"   method="POST" action="{{ URL::to('/update-category-product/'.$edit_value->maloai) }}">
                             {{ csrf_field() }}
                         <div class="form-group " >
                             
                             <label for="exampleInputEmail1">Mã loại sản phẩm</label>
-                            <input  type="text" name="category_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
+                            <input  type="text" value="{{$edit_value->maloai}}" name="category_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
                             
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên loại sản phẩm</label>
-                            <input type="text" name="category_product_name" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
+                            <input type="text" value="{{$edit_value->tenloai}}" name="category_product_name" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
                         </div>
                        
                         
                        
-                        <button type="submit" class="btn btn-info">Submit</button>
+                        <button type="submit" class="btn btn-info">Update</button>
                     </form>
                     </div>
-
+                    @endforeach
                 </div>
             </section>
 

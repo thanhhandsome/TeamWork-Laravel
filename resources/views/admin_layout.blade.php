@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Danh muc san pham</span>
+                        <span>Danh mục sản loại sản phẩm</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-category-product")}}">Them danh muc</a></li>
@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Nha san xuat</span>
+                        <span>Nhà sản xuất</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-brand-product")}}">Them thuong hieu</a></li>
@@ -121,11 +121,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>San Pham</span>
+                        <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-product")}}">Them san pham</a></li>
-						<li><a href="{{URL::to("/all-product")}}">Liet ke </a></li>
+						<li><a href="{{URL::to("/all-product")}}">Liệt kê </a></li>
+                        
+                    </ul>
+                </li>
+				
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Chi tiết sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to("/add-product-detail")}}">Thêm chi tiết sản phẩm</a></li>
+						<li><a href="{{URL::to("/all-product-detail")}}">Liệt kê</a></li>
                         
                     </ul>
                 </li>

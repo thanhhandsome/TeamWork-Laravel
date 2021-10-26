@@ -5,10 +5,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\Sanphamreq;
 session_start();
 
 class ProductController extends Controller
 {    
+   
     public function edit_product($product_id)
     {
         $edit_product = DB::table('sanpham')->where('masp',$product_id)->get();
@@ -41,7 +43,7 @@ class ProductController extends Controller
         
         return view ('admin.add_product')->with('cate_product',$cate_product)->with('brand_product',$cate_brand);
     }
-    public function save_product(Request $request)
+    public function save_product(Sanphamreq $request)
     {
         $data = array();
         $data['masp'] = $request->product_id;
@@ -71,7 +73,7 @@ class ProductController extends Controller
          Session()->put('message','Them san pham thanh cong');
          return Redirect::to('add-product');
     }
-    public function update_product($product_id,Request $request)
+    public function update_product($product_id,Sanphamreq $request)
     {
         $data = array();
         $data['tensp'] = $request->product_name;
@@ -99,10 +101,19 @@ class ProductController extends Controller
 
     }
     public function del_product($product_id)
-    {    
+    { $a=  DB::table('chitietsp')->where('masp',$product_id)->count();
+      
+        if($a==0)
+        {
         DB::table('sanpham')->where('masp',$product_id)->delete();
+
         Session()->put('message','cap nhat danh muc thanh cong');
         return Redirect::to('all-product');
+        }
+        else
+        {
+            echo 'ko dc';
+        }
 
     }
     

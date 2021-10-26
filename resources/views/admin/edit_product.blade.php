@@ -15,6 +15,17 @@
 		Session()->put('message',null);
 	}
 	?>
+       @if(count($errors)>0)
+       <div class="alert alert-danger">
+           <ul>
+               @foreach ($errors->all() as $err)
+                   <li>
+                       {!!$err  !!}
+                   </li>
+               @endforeach
+           </ul>
+       </div>
+   @endif
                             <div class="position-center">
                             @foreach($edit_product as $key=>$edit_value)
 

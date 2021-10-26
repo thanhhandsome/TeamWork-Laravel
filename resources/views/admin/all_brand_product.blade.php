@@ -37,22 +37,22 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th ><a class="text-danger">Mã loại sản phẩm</a></th>
-            <th><a class="text-danger">Tên loại sản phẩm</a></th>
-            
+            <th ><a class="text-danger">Mã Nhà Sản Xuất</a></th>
+            <th><a class="text-danger">Tên Nhà Sản Xuất</a></th>
+            <th><a class="text-danger">Xuất Xứ</a></th>
             <th style="width:30px;"></th>
           </tr>
         </thead>
-        @foreach($all_category as $key => $cat_pro)
+        @foreach($all_brand as $key => $brand_pro)
         <tbody>
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{ $cat_pro->maloai }}</td>
-            <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
-            
+            <td>{{ $brand_pro->mansx }}</td>
+            <td>{{ $brand_pro->tennsx }}</td>
+            <td><span class="text-ellipsis">{{ $brand_pro->xuatxu }}</span></td>
             <td>
-              <a href="{{URL::to('/edit-category-product/'.$cat_pro->maloai)}}" class="active" ui-toggle-class=""><i class="fa fa-pencil text-info text-active"></i></a>
-              <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{URL::to('/delete-category-product/'.$cat_pro->maloai)}}" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+              <a href="{{URL::to('/edit-brand-product/'.$brand_pro->mansx)}}" class="active" ui-toggle-class=""><i class="fa fa-pencil text-info text-active"></i></a>
+              <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{URL::to('/delete-brand-product/'.$brand_pro->mansx)}}" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
             </td>
          
           </tr>
