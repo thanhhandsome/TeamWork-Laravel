@@ -51,3 +51,26 @@ Route::post('/save-product-detail','ProductdetailController@save_product_detail'
 Route::get('/update-product-detail/{product_id}','ProductdetailController@update_product_detail');
 Route::get('/edit-product-detail/{product_id}','Productdetailcontroller@edit_product_detail');
 Route::get('/del-product-detail/{product_id}','Productdetailcontroller@del_product_detail');
+//frontened
+Route::get('/', 'HomeController@index');
+Route::get('/trang-chu','HomeController@index');
+Route::post('/tim-kiem','HomeController@search');
+
+Route::get('/dangnhap','Pagecontroller@login');
+
+// Route::get('/dangnhap',[
+//     'as'=>'dangnhap',
+//     'uses'=>'Pagecontroller@postDangnhap'
+//     ]);
+//     Route::get('dangky',[
+//     'as'=>'dangky',
+//     'uses'=>'Pagecontroller@getDangky'
+//     ]);
+//     Route::post('dangky',[
+//     'as'=>'dangky',
+//     'uses'=>'Pagecontroller@postDangky'
+//     ]);
+//     Route::get('dangxuat',[
+//     'as'=>'dangxuat',
+//     'uses'=>'Pagecontroller@getDangxuat'
+//     ]);
