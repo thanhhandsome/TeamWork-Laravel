@@ -11,7 +11,6 @@ use Session;
 use Hash;
 use Illuminate\Support\Facades\DB;
 use App\Model\khachhang;
-use App\User as AppUser;
 use Sentinel;
 session_start();
 class Pagecontroller extends Controller

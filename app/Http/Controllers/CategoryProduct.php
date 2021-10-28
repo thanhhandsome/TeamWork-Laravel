@@ -64,4 +64,16 @@ class CategoryProduct extends Controller
             echo 'Erorr!!!';
         }
     }
+<<<<<<< HEAD
+=======
+    //End Admin Page
+    public function show_category_home($category_id)
+    {
+        $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+        $category_by_id = DB::table('sanpham')->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')->where('sanpham.maloai',$category_id)->get();
+        $category_name = DB::table('loaisanpham')->where('loaisanpham.maloai',$category_id)->limit(1)->get();
+        return view ('pages.category.show_category')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
+    }
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
 }

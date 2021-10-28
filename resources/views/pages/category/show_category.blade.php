@@ -1,23 +1,10 @@
 @extends('welcome')
 @section('content')
 <div class="features_items"><!--features_items-->
-<h2 class="title text-center">Sản phẩm mới</h2>
-@foreach($all_product as $key => $product)
-<<<<<<< HEAD
-<div class="col-sm-3" style="width:30%; height: 30%">
-	<div class="product-image-wrapper">
-
-		<a href="{{URL::to('/chitietsanpham/'.$product->masp)}}">
-
-		<div class="single-products">
-			<div class="productinfo text-center">
-				
-
-					<img width="100" height="300" src="{{URL::to('public/frontend/img/'.$product->hinh)}}" alt="" />
-					<h2>{{number_format($product->gia).' '.'VNĐ'}}</h2>
-					<p>{{$product->tensp}}</p>
-
-=======
+@foreach($category_name as $key => $catalog)
+   <h2 class="title text-center">{{$catalog->tenloai}}</h2>
+@endforeach
+@foreach($category_by_id as $key => $product)
 <div class="col-sm-4" style="width:40%; height: 40%">
 	<div class="product-image-wrapper">
 		<div class="single-products">
@@ -27,7 +14,6 @@
 					<h2>{{number_format($product->gia).' '.'VNĐ'}}</h2>
 					<p>{{$product->tensp}}</p>
 					<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
 					</a>
 
 			</div>

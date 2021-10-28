@@ -35,7 +35,11 @@
                         <div class="form-group " >
                             
                             <label for="exampleInputEmail1">Mã loại sản phẩm</label>
+<<<<<<< HEAD
                             <input  type="text" value="{{$edit_value->maloai}}" name="category_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
+=======
+                            <input  type="text" value="{{$edit_value->maloai}}" readonly="{{$edit_value->maloai}}" name="category_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                             
                         </div>
                         <div class="form-group">

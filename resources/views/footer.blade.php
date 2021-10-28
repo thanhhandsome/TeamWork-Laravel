@@ -13,7 +13,11 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
+<<<<<<< HEAD
 										<img src="{{("public/frontend/img/iframe1.png")}}" alt="" />
+=======
+										<img src="{{asset("public/frontend/img/iframe1.png")}}" alt="" />
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>

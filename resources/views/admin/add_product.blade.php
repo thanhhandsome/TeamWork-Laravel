@@ -1,6 +1,7 @@
 @extends('admin_layout')
 @section('admin_content')
 <div class="row">
+<<<<<<< HEAD
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
@@ -32,6 +33,39 @@
                            {{csrf_field()}}
 
                            <div class="form-group">
+=======
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Them san pham
+            </header>
+            <div class="panel-body">
+            <?php
+            $message = Session()->get('message');
+            if($message)
+            {
+                echo $message;
+                Session()->put('message',null);
+            }
+
+          ?>
+            @if(count($errors)>0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $err)
+                        <li>
+                            {!!$err  !!}
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+            <div class="position-center">
+                <form role="form" action="{{URL::to('/save-product')}}" method="post" enctype="multipart/form-data">
+                           {{csrf_field()}}
+
+                        <div class="form-group">
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                             <label for="exampleInputPassword1">Mã san pham</label>
                             <textarea type="Text" name="product_id" class="form-control" id="exampleInputPassword1" placeholder="Vui lòng nhập mã sản phẩm"></textarea>
                         </div>

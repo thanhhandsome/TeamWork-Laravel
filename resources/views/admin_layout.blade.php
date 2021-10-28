@@ -59,6 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <img alt="" src="images/2.png">
                 <span class="username">
 				<?php
+<<<<<<< HEAD
 	$name = Session()->get('manv');
 	if($name)
 	{
@@ -66,6 +67,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 	}
 	?>
+=======
+				$name = Session()->get('manv');
+				if($name)
+				{
+					echo $name;
+					
+				}
+				?>
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
 				</span>
                 <b class="caret"></b>
             </a>
@@ -98,7 +108,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
+<<<<<<< HEAD
                         <span>Danh mục sản loại sản phẩm</span>
+=======
+                        <span>Danh mục loại sản phẩm</span>
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-category-product")}}">Them danh muc</a></li>
@@ -125,12 +139,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-product")}}">Them san pham</a></li>
+<<<<<<< HEAD
 						<li><a href="{{URL::to("/all-product")}}">Liệt kê </a></li>
                         
                     </ul>
                 </li>
 				
 				<li class="sub-menu">
+=======
+						<li><a href="{{URL::to("/all-product")}}">Liet ke </a></li>
+                        
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Chi tiết sản phẩm</span>
@@ -141,14 +164,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         
                     </ul>
                 </li>
+<<<<<<< HEAD
+=======
+                
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Don hang</span>
                     </a>
                     <ul class="sub">
+<<<<<<< HEAD
 						<li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>
 						
+=======
+						<li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>	
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                         
                     </ul>
                 </li>

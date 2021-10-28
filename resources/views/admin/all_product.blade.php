@@ -1,6 +1,10 @@
 @extends('admin_layout')
 @section('admin_content')
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
 
 <div class="table-agile-info">
     <div class="panel panel-default">
@@ -34,7 +38,11 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
+<<<<<<< HEAD
                
+=======
+
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
               </label>
             </th>
             <th >Mã </th>
@@ -44,12 +52,20 @@
             <th>Mô tả</th>
             <th>NSX</th>
             <th>Loại</th>
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
             <th style="width:30px;"></th>
           </tr>
         </thead>
         @foreach($all_product as $key => $cat_pro)
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
         <tbody>
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
@@ -60,7 +76,11 @@
             <td>{{ $cat_pro->mota }}</td>
             <td>{{ $cat_pro->tennsx }}</td>
             <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
             <td>
               <a href="{{URL::to('/edit-product/'.$cat_pro->masp)}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
@@ -68,7 +88,11 @@
 
               <i class="fa fa-times text-danger text"></i></a>
             </td>
+<<<<<<< HEAD
          
+=======
+
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
           </tr>
           @endforeach
         </tbody>
@@ -76,7 +100,11 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
         {{-- <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div> --}}
@@ -94,6 +122,12 @@
     </footer>
   </div>
 </div>
+<<<<<<< HEAD
     
 </div>
 @endsection
+=======
+
+</div>
+@endsection 
+>>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf

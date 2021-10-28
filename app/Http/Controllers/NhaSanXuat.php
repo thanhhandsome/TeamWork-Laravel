@@ -56,4 +56,13 @@ class NhaSanXuat extends Controller
     Session::put('message','xóa nhà sản xuất thành công');
     return Redirect::to('all-brand-product');
     }
+
+    public function show_brand_home($brand_id)
+    {
+        $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+        $brand_by_id = DB::table('sanpham')->join('nhasx','sanpham.mansx','=','nhasx.mansx')->where('sanpham.mansx',$brand_id)->get();
+        $brand_name = DB::table('nhasx')->where('nhasx.mansx',$brand_id)->limit(1)->get();
+        return view ('pages.brand.show_brand')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name);
+    }
 }
