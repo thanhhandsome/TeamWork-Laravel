@@ -59,13 +59,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <img alt="" src="images/2.png">
                 <span class="username">
 				<?php
-	$name = Session()->get('manv');
-	if($name)
-	{
-		echo $name;
-		
-	}
-	?>
+				$name = Session()->get('manv');
+				if($name)
+				{
+					echo $name;
+					
+				}
+				?>
 				</span>
                 <b class="caret"></b>
             </a>
@@ -98,7 +98,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Danh muc san pham</span>
+                        <span>Danh mục loại sản phẩm</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-category-product")}}">Them danh muc</a></li>
@@ -109,7 +109,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>Nha san xuat</span>
+                        <span>Nhà sản xuất</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-brand-product")}}">Them thuong hieu</a></li>
@@ -121,7 +121,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>San Pham</span>
+                        <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-product")}}">Them san pham</a></li>
@@ -129,14 +129,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         
                     </ul>
                 </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Chi tiết sản phẩm</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to("/add-product-detail")}}">Thêm chi tiết sản phẩm</a></li>
+						<li><a href="{{URL::to("/all-product-detail")}}">Liệt kê</a></li>
+                        
+                    </ul>
+                </li>
+                
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Don hang</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>
-						
+						<li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>	
                         
                     </ul>
                 </li>

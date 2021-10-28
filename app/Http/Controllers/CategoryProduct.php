@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\LoaiSP;
 session_start();
 class CategoryProduct extends Controller
 {
@@ -18,7 +19,7 @@ class CategoryProduct extends Controller
 
         return view ('admin_layout')->with('admin.all_category_product',$manager_category_product);
     }
-    public function save_category(Request $request)
+    public function save_category(LoaiSP $request)
     {
     $data = array();
     $data['maloai']=$request->category_product_id;
@@ -37,7 +38,7 @@ class CategoryProduct extends Controller
 
         return view ('admin_layout')->with('admin.edit_category_product',$manager_category_product);
     }
-    public function update_category(Request $request, $category_product_id)
+    public function update_category(LoaiSP $request, $category_product_id)
     {
     $data = array();
     $data['maloai']=$request->category_product_id;
@@ -51,8 +52,25 @@ class CategoryProduct extends Controller
     }
     public function delete_category($category_product_id)
     {
-    DB::table('loaisanpham')->where('maloai',$category_product_id)->delete();
-    Session::put('message','xóa loại sản phẩm thành công');
-    return Redirect::to('all-category-product');
+        $a = DB::table('sanpham')->where('maloai',$category_product_id)->count();
+        if($a==0)
+        {
+            DB::table('loaisanpham')->where('maloai',$category_product_id)->delete();
+            Session::put('message','xóa loại sản phẩm thành công');
+            return Redirect::to('all-category-product');
+        }
+        else
+        {
+            echo 'Erorr!!!';
+        }
+    }
+    //End Admin Page
+    public function show_category_home($category_id)
+    {
+        $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+        $category_by_id = DB::table('sanpham')->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')->where('sanpham.maloai',$category_id)->get();
+        $category_name = DB::table('loaisanpham')->where('loaisanpham.maloai',$category_id)->limit(1)->get();
+        return view ('pages.category.show_category')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
     }
 }

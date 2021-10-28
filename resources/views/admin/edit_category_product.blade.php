@@ -8,6 +8,17 @@
                 <header class="panel-heading">
                     CẬP NHẬP LOẠI SẢN PHẨM
                 </header>
+                @if(count($errors)>0)
+                   <div class="alert alert-danger">
+                       <ul>
+                           @foreach ($errors->all() as $err)
+                               <li>
+                                   {!!$err  !!}
+                               </li>
+                           @endforeach
+                       </ul>
+                    </div>
+                @endif
                 <?php
                     $mess =Session::get('message');
                     if($mess)
@@ -24,7 +35,7 @@
                         <div class="form-group " >
                             
                             <label for="exampleInputEmail1">Mã loại sản phẩm</label>
-                            <input  type="text" value="{{$edit_value->maloai}}" name="category_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
+                            <input  type="text" value="{{$edit_value->maloai}}" readonly="{{$edit_value->maloai}}" name="category_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
                             
                         </div>
                         <div class="form-group">

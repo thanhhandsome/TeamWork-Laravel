@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\NhaSX;
 session_start();
 
 class NhaSanXuat extends Controller
@@ -19,7 +20,7 @@ class NhaSanXuat extends Controller
 
         return view ('admin_layout')->with('admin.all_brand_product',$manager_brand_product);
     }
-    public function save_brand(Request $request)
+    public function save_brand(NhaSX $request)
     {
     $data = array();
     $data['mansx']=$request->brand_product_id;
@@ -36,7 +37,7 @@ class NhaSanXuat extends Controller
 
         return view ('admin_layout')->with('admin.edit_brand_product',$manager_brand_product);
     }
-    public function update_brand(Request $request, $brand_product_id)
+    public function update_brand(NhaSX $request, $brand_product_id)
     {
     $data = array();
     $data['mansx']=$request->brand_product_id;
@@ -54,5 +55,14 @@ class NhaSanXuat extends Controller
     DB::table('nhasx')->where('mansx',$brand_product_id)->delete();
     Session::put('message','xóa nhà sản xuất thành công');
     return Redirect::to('all-brand-product');
+    }
+
+    public function show_brand_home($brand_id)
+    {
+        $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+        $brand_by_id = DB::table('sanpham')->join('nhasx','sanpham.mansx','=','nhasx.mansx')->where('sanpham.mansx',$brand_id)->get();
+        $brand_name = DB::table('nhasx')->where('nhasx.mansx',$brand_id)->limit(1)->get();
+        return view ('pages.brand.show_brand')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name);
     }
 }

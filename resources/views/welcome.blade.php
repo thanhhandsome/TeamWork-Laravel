@@ -1,100 +1,73 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home | SHOP BÁN ĐIỆN THOẠI</title>
+        <base href="{{asset('')}}">
+        <link href="{{('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
+        <link href="{{('public/frontend/css/price-range.css')}}" rel="stylesheet">
+        <link href="{{('public/frontend/css/animate.css')}}" rel="stylesheet">
+        <link href="{{('public/frontend/css/main.css')}}" rel="stylesheet">
+        <link href="{{('public/frontend/css/responsive.css')}}" rel="stylesheet">
+        <link href="{{('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+        <link rel="shortcut icon" href="{{('public/frontend/images/ico/favicon.ico')}}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{('public/frontend/img/apple-touch-icon-144-precomposed.png')}}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{('public/frontend/img/apple-touch-icon-114-precomposed.png')}}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{('public/frontend/img/apple-touch-icon-72-precomposed.png')}}">
+        <link rel="apple-touch-icon-precomposed" href="{{('public/frontend/img/apple-touch-icon-57-precomposed.png')}}">
+        </head><!--/head-->
+        <body>
+            
+            @include('header')
+            
+            @include('footer')
+            <script src="{{('public/frontend/js/jquery.js')}}"></script>
+            <script src="{{('public/frontend/js/bootstrap.min.js')}}"></script>
+            <script src="{{('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
+            <script src="{{('public/frontend/js/price-range.js')}}"></script>
+            <script src="{{('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
+            <script src="{{('public/frontend/js/main.js')}}"></script>
+            <script src="{{('public/frontend/js/sweetalert.min.js')}}"></script>
+            <script type="text/javascript">
+            // $(document).ready(function(){
+            // $('.add-to-cart').click(function(){
+            // var id = $(this).data('id_sp');
+            // var cart_id = $('.cart_id_' + id).val();
+            // var cart_name = $('.cart_name_' + id).val();
+            // var cart_image = $('.cart_image_' + id).val();
+            // var cart_price = $('.cart_price_' + id).val();
+            // var cart_qty = $('.cart_qty_' + id).val();
+            // var _token = $('input[name="_token"]').val();
+            
+            // $.ajax({
+            // url: '{{url('/add-cart-ajax')}}',
+            // method: 'POST',
+            // data:{cart_id:cart_id,cart_name:cart_name,cart_image:cart_image,cart_price:cart_price,cart_qty:cart_qty,_token:_token},
+            // success:function(data){
+            //     swal({
+            //         title: "Đã thêm sản phẩm vào giỏ hàng",
+            //         text: "Bạn có thể mua hàng tiếp hoặc tới giỏ hàng để tiến hành thanh toán",
+            //         showCancelButton: true,
+            //         cancelButtonText: "Xem tiếp",
+            //         confirmButtonClass: "btn-success",
+            //         confirmButtonText: "Đi đến giỏ hàng",
+            //         closeOnConfirm: false
+            //     },
+            //     function() {
+            //         window.location.href = "{{url('/gio-hang')}}";
+            //     });
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+            //     }
+            // });
+            // });
+            // });
+            </script>
+        </body>
+    </html>

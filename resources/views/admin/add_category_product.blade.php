@@ -8,6 +8,17 @@
                 <header class="panel-heading">
                     THÊM LOẠI SẢN PHẨM
                 </header>
+                @if(count($errors)>0)
+                   <div class="alert alert-danger">
+                       <ul>
+                           @foreach ($errors->all() as $err)
+                               <li>
+                                   {!!$err  !!}
+                               </li>
+                           @endforeach
+                       </ul>
+                    </div>
+                @endif
                 <div class="panel-body">
                     <?php
                     $mess =Session::get('message');
