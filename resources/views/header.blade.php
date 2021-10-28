@@ -38,63 +38,31 @@
 
 			<div class="shop-menu pull-right">
 				<ul class="nav navbar-nav">
+					
 					<li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
-					<li><a href=""><i  class="fa fa-github"></i> Link GitHUB</a></li>
-
-					<?php
-						$name = Session()->get('tenkh');
-						$id = Session()->get('makh');
-							
-					?>
-					<li><a href="{{URL::to('thongtin/'.$id)}}"><i class="fa fa-user"></i><?php echo $name?></a></li>
-
-
-
-					<?php 
-						$customer = Session()->get('makh');
-						$shipping = Session()->get('ma_tt');
-						if($customer != NULL && $shipping == NULL){
-					?>
-
-					<li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-
-					<?php
-						}elseif($customer != NULL && $shipping != NULL){
-					?>
-
+			
+					@if(Auth::check())
+					
+				
 					<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-
-					<?php
-						}else{
-					?>
+					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+					<li><a href=""><i  class="fa fa-github"></i> {{ Auth::user()->email }}</a></li>
+					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-user"></i> Đăng xuất</a></li>
+					@else
+						<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+						<li><a href="{{URL::to('/dangky')}}"><i class="fa fa-lock"></i> Đăng ký</a></li>
 
 					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-					
-					<?php
-						}
-					?>
-
-
 					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-
-					<?php 
-						$customer = Session()->get('makh');
-						if($customer != NULL){
-					?>
-
-					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-user"></i> Đăng xuất</a></li>
+					@endif
+				
 					
-					<?php
-						}else{
-					?>
-
-					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-					<li><a href="{{URL::to('/dangky')}}"><i class="fa fa-lock"></i> Đăng ky</a></li>
-
-					<?php
-						}
 					
-					?>
+					
+
+					
+
+					
 					<li></li>
 					
 				</ul>
@@ -107,8 +75,9 @@
 </div><!--/header-bottom-->
 </header><!--/header-->
 <section>
+	
 <div class="container">
-<div class="row">
+<div class="row" style="margin-bottom: 20px">
 	<div class="col-sm-3">
 		<div class="left-sidebar">
 			<h2>Danh mục sản phẩm</h2>
@@ -138,6 +107,7 @@
 	<div class="col-sm-9 padding-right">
 		@yield('content')
 	</div>
+	
 </div>
 </div>
 </section>

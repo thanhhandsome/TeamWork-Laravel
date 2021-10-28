@@ -56,21 +56,8 @@ Route::get('/', 'HomeController@index');
 Route::get('/trang-chu','HomeController@index');
 Route::post('/tim-kiem','HomeController@search');
 
-Route::get('/dangnhap','Pagecontroller@login');
+Route::get('/dangnhap','Pagecontroller@getlogin');
+Route::post('/checkout','Pagecontroller@postlogin');
+Route::get('/dangky','Pagecontroller@getdangky');
+Route::post('/save-account','Pagecontroller@postdangky');
 
-// Route::get('/dangnhap',[
-//     'as'=>'dangnhap',
-//     'uses'=>'Pagecontroller@postDangnhap'
-//     ]);
-//     Route::get('dangky',[
-//     'as'=>'dangky',
-//     'uses'=>'Pagecontroller@getDangky'
-//     ]);
-//     Route::post('dangky',[
-//     'as'=>'dangky',
-//     'uses'=>'Pagecontroller@postDangky'
-//     ]);
-//     Route::get('dangxuat',[
-//     'as'=>'dangxuat',
-//     'uses'=>'Pagecontroller@getDangxuat'
-//     ]);
