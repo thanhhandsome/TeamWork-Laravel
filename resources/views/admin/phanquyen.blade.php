@@ -1,12 +1,14 @@
 @extends('admin_layout')
 @section('admin_content')
+@extends('admin_layout')
+@section('admin_content')
     
 
 <div class="row">
     <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">
-                    CẬP NHẬP LOẠI SẢN PHẨM
+                    Cấp Quyền
                 </header>
                 @if(count($errors)>0)
                    <div class="alert alert-danger">
@@ -28,31 +30,41 @@
                     }
                 ?>
                 <div class="panel-body">  
-                    @foreach($edit_category as $key => $edit_value)
+               
+                       
+                   
                     <div class="position-center">
-                        <form role="form"   method="POST" action="{{ URL::to('/update-category-product/'.$edit_value->maloai) }}">
+                        <form role="form"   method="POST" action="{{URL::to('/save-quyen/'.$user->id)}}">
                             {{ csrf_field() }}
+                            
+                        
                         <div class="form-group " >
+                            <select name="role" class="form-control input-sm m-bot15">
+                                @foreach($role as $key=>$c)
                             
-                            <label for="exampleInputEmail1">Mã loại sản phẩm</label>
-                            <input  type="text" value="{{$edit_value->maloai}}" readonly="{{$edit_value->maloai}}" name="category_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
-                            
+
+                               <option selected value="{{($c->id)}}">{{ $c->name }}</option>
+                         
+                               {{-- <option selected value="{{($c->id)}}"></option> --}}
+
+                               {{-- <option selected value="{{($c->id)}}">{{ $c->name }}</option>
+                               @endif --}}
+                               @endforeach
+                               </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Tên loại sản phẩm</label>
-                            <input type="text" value="{{$edit_value->tenloai}}" name="category_product_name" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
-                        </div>
+                    
                        
                         
                        
-                        <button type="submit" class="btn btn-info">Update</button>
+                        <button type="submit" class="btn btn-info">Submit</button>
                     </form>
                     </div>
-                    @endforeach
+                
                 </div>
             </section>
 
     </div>
     
 </div>
+@endsection
 @endsection

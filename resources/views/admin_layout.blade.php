@@ -59,7 +59,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <img alt="" src="images/2.png">
                 <span class="username">
 				<?php
-<<<<<<< HEAD
 	$name = Session()->get('manv');
 	if($name)
 	{
@@ -67,22 +66,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 	}
 	?>
-=======
-				$name = Session()->get('manv');
-				if($name)
-				{
-					echo $name;
-					
-				}
-				?>
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
 				</span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="{{URL::to("/detail-user-admin/".$name)}}"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                <li><a href="{{URL::to("/editinfo/".Auth::user()->id)}}"><i class=" fa fa-suitcase"></i>Cập nhật tài khoản</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="{{URL::to("/admin")}}"><i class="fa fa-key"></i> Log Out</a></li>
+                <li><a href="{{URL::to("/logout")}}"><i class="fa fa-key"></i> Log Out</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->
@@ -104,15 +94,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Dashboard</span>
                     </a>
                 </li>
-                
+                @role('nhanvien')
+              
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-<<<<<<< HEAD
-                        <span>Danh mục sản loại sản phẩm</span>
-=======
                         <span>Danh mục loại sản phẩm</span>
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-category-product")}}">Them danh muc</a></li>
@@ -120,6 +107,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         
                     </ul>
                 </li>
+               
 				<li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
@@ -139,21 +127,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                     <ul class="sub">
 						<li><a href="{{URL::to("/add-product")}}">Them san pham</a></li>
-<<<<<<< HEAD
 						<li><a href="{{URL::to("/all-product")}}">Liệt kê </a></li>
                         
                     </ul>
                 </li>
 				
 				<li class="sub-menu">
-=======
-						<li><a href="{{URL::to("/all-product")}}">Liet ke </a></li>
-                        
-                    </ul>
-                </li>
-
-                <li class="sub-menu">
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Chi tiết sản phẩm</span>
@@ -164,25 +143,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         
                     </ul>
                 </li>
-<<<<<<< HEAD
-=======
-                
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Don hang</span>
                     </a>
                     <ul class="sub">
-<<<<<<< HEAD
 						<li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>
 						
-=======
-						<li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>	
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                         
                     </ul>
                 </li>
+                @endrole
+                @role('admin')
+				<li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý nhân viên</span>
+                    </a>
+                    <ul class="sub">
+						<li><a href="{{URL::to("/dangky-nv")}}">Tạo tài khoản thành viên</a></li>
+                        <li><a href="{{URL::to("/danhsach")}}">Danh sách thành viên</a></li>
+                        
+                    </ul>
+                </li>
+                @endrole
             </ul>            </div>
         <!-- sidebar menu end-->
     </div>

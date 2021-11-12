@@ -46,8 +46,8 @@
 				
 					<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
 					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-					<li><a href=""><i  class="fa fa-github"></i> {{ Auth::user()->email }}</a></li>
-					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-user"></i> Đăng xuất</a></li>
+					<li><a href="{{ URL::to('/getinfo/'.Auth::user()->id) }}"><i  class="fa fa-user"></i> {{ Auth::user()->email }}</a></li>
+					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
 					@else
 						<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 						<li><a href="{{URL::to('/dangky')}}"><i class="fa fa-lock"></i> Đăng ký</a></li>

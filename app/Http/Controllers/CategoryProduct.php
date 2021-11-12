@@ -64,8 +64,6 @@ class CategoryProduct extends Controller
             echo 'Erorr!!!';
         }
     }
-<<<<<<< HEAD
-=======
     //End Admin Page
     public function show_category_home($category_id)
     {
@@ -75,5 +73,4 @@ class CategoryProduct extends Controller
         $category_name = DB::table('loaisanpham')->where('loaisanpham.maloai',$category_id)->limit(1)->get();
         return view ('pages.category.show_category')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
     }
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
 }

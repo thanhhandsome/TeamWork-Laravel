@@ -21,6 +21,15 @@ Route::get('/', function () {
 //admin
 Route::get('/trangchu','Admincontroller@index');
 Route::get('/dashboard','Admincontroller@dash');
+Route::post('/login','Admincontroller@Postlogin');
+Route::get('/dangky-nv','Admincontroller@dang_ky_nv');
+Route::post('/save-dk-nv','Admincontroller@save_dk');
+Route::get('/danhsach','Admincontroller@all_nv');
+Route::get('/phanquyen/{id}','Admincontroller@phan_quyen');
+Route::get('/editinfo/{info_id}','Admincontroller@edit_info');
+Route::post('/update-acc','Admincontroller@update_acc');
+Route::get('/logout','Admincontroller@logout');
+Route::post('/save-quyen/{id}','Admincontroller@save_quyen');
 //loaisp
 Route::get('/add-category-product','CategoryProduct@add_category');
 Route::get('/edit-category-product/{category_product_id}','CategoryProduct@edit_category');
@@ -66,7 +75,10 @@ Route::post('/tim-kiem','HomeController@search');
 Route::get('/dangnhap','Pagecontroller@getlogin');
 Route::post('/checkout','Pagecontroller@postlogin');
 Route::get('/dangky','Pagecontroller@getdangky');
+Route::get('/dangxuat','Pagecontroller@getdangxuat');
 Route::post('/save-account','Pagecontroller@postdangky');
+Route::get('/getinfo/{info_id}','Pagecontroller@getinfo');
+Route::post('/save-info','Pagecontroller@save_info');
 
 //Danh muc san pham trang chu
 Route::get('/danhmucsanpham/{category_id}','CategoryProduct@show_category_home');
@@ -78,7 +90,7 @@ Route::get('/thuonghieusanpham/{brand_id}', 'NhaSanXuat@show_brand_home');
 
 Route::post('/tim-kiem','HomeController@search');
 
-Route::get('/dangnhap','Pagecontroller@login');
+
 
 // Route::get('/dangnhap',[
 //     'as'=>'dangnhap',

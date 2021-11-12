@@ -8,7 +8,6 @@
                         </header>
                         <div class="panel-body">
                         <?php
-<<<<<<< HEAD
 	$message = Session()->get('message');
 	if($message)
 	{
@@ -27,41 +26,12 @@
           </ul>
       </div>
   @endif
-=======
-                      	$message = Session()->get('message');
-                      	if($message)
-                      	{
-                      		echo $message;
-                      		Session()->put('message',null);
-                      	}
-                      	?>
-                        @if(count($errors)>0)
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $err)
-                                    <li>
-                                        {!!$err  !!}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                             <div class="position-center">
                             @foreach($detail_product as $key=>$edit_value)
 
                            <form role="form" action="{{URL::to('/update-product-detail/'.$edit_value->mactsp)}}" method="get" enctype="multipart/form-data">
                            {{csrf_field()}}
-<<<<<<< HEAD
                            
-=======
-
-                                <div class="form-group">
-                                  <label for="exampleInputPassword1">Mã sản phẩm</label>
-                                  <textarea type="Text" value="{{($edit_value->mactsp)}}" readonly="{{$edit_value->mactsp}}" name="product_id" class="form-control" id="exampleInputPassword1" placeholder="Password"><?php echo ($edit_value->mactsp);?></textarea>
-                                </div>
-
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Khối lượng</label>
                                     <textarea type="Text" value="{{($edit_value->khoiluong)}}"  name="product_kl" class="form-control" id="exampleInputPassword1" placeholder="Password"><?php echo ($edit_value->khoiluong);?></textarea>

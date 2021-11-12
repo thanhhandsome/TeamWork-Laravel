@@ -5,7 +5,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
     <div class="panel-heading">
-      Responsive Table
+      Liệt kê Nhân viên
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -34,26 +34,48 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
+              
               </label>
             </th>
-            <th ><a class="text-danger">Mã loại sản phẩm</a></th>
-            <th><a class="text-danger">Tên loại sản phẩm</a></th>
+            <th><a class="text-danger">Họ và Tên</a></th>
+            <th><a class="text-danger">Email</a></th>
+            <th><a class="text-danger">Phone</a></th>
+            <th><a class="text-danger">Địa Chỉ</a></th>
+            <th><a class="text-danger">Ngày Sinh</a></th>
+            <th><a class="text-danger">Vai trò</a></th>
+            <th><a class="text-danger">Quyền</a></th>
+            {{-- <th><a class="text-danger">Thao tác</a></th> --}}
+          
+          
             
-            <th style="width:30px;"></th>
           </tr>
         </thead>
-        @foreach($all_category as $key => $cat_pro)
+        @foreach($all_nv as $key => $nv)
         <tbody>
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{ $cat_pro->maloai }}</td>
-            <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
-            
+          
+            <td >{{ $nv->id }}</td>
+            <td>{{ $nv->name }}</td>
+            <td>{{ $nv->email }}</td>
+            <td>{{ $nv->phone }}</td>
+            <td>{{ $nv->diachi}}</td>
+            <td>{{ $nv->ngaysinh}}</td>
+            @foreach($nv->roles as $key =>$r)
+            <td>{{ $r->name}}</td>
+            @endforeach
+            {{-- @foreach($nv->permissions as $key =>$r)
+            <td>{{ $r->name}}</td>
+            @endforeach --}}
             <td>
-              <a href="{{URL::to('/edit-category-product/'.$cat_pro->maloai)}}" class="active" ui-toggle-class=""><i class="fa fa-pencil text-info text-active"></i></a>
-              <a onclick="return confirm('Bạn có muốn xóa không?')" href="{{URL::to('/delete-category-product/'.$cat_pro->maloai)}}" class="active" ui-toggle-class=""><i class="fa fa-times text-danger text"></i></a>
+                <a href="{{URL::to('/phanquyen/'.$nv->id)}}"class="btn btn-success">Phân Vai Trò</a>
+                <a href="" class="btn btn-success">Xóa</a>
+                
             </td>
+           
+
+           
+           
+           
          
           </tr>
           @endforeach

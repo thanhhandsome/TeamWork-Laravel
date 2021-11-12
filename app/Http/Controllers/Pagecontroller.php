@@ -10,6 +10,7 @@ use Validator;
 use Session;
 use Hash;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\infocusrequest;
 use App\Model\khachhang;
 use Sentinel;
 session_start();
@@ -25,6 +26,7 @@ class Pagecontroller extends Controller
     public function postdangky(register $request)
     {
         $data = array();
+        $data['name']=$request->name;
         $data['name']=$request->name;
         $data['email']=$request->email;
         $data['password']=bcrypt($request->password);
@@ -76,7 +78,7 @@ class Pagecontroller extends Controller
 
     public function getDangxuat()
     {
-    //    Auth::logout();
+     Auth::logout();
 
 
         return Redirect::to('trang-chu');
@@ -92,6 +94,23 @@ class Pagecontroller extends Controller
             return view('pages.thongtin')->with('cate_product',$cate_product)->with('brand_product',$brand_product);
         } 
     
+    }
+
+    public function getinfo()
+    {   	$cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+            $brand_product = DB::table('nhasx')->orderby('mansx','desc')->get();
+        return view('pages.info')->with('brand_product',$brand_product)->with('cate_product',$cate_product);
+    }
+    public function save_info(infocusrequest $request)
+    {   	  $data = array();
+        $id_user = Auth::user()->id;
+        $data['name']=$request->name;
+        $data['password']=bcrypt($request->password);
+        $data['phone']=$request->phone;
+        $data['diachi']=$request->address;
+        
+        DB::table('khachhang')->where('id',$id_user)->update($data);
+        return Redirect::to('getinfo/'.$id_user);
     }
 
     // public function getGiohang()

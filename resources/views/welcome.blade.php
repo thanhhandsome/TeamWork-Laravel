@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home | SHOP BÁN ĐIỆN THOẠI</title>
+        <title>Home | SHOP GIA DỤNG</title>
         <base href="{{asset('')}}">
         <link href="{{('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
@@ -36,6 +36,19 @@
             <script src="{{('public/frontend/js/main.js')}}"></script>
             <script src="{{('public/frontend/js/sweetalert.min.js')}}"></script>
             <script type="text/javascript">
+                    const ipnElement = document.querySelector('#ipnPassword')
+        const btnElement = document.querySelector('#btnPassword')
+        
+        // step 2
+        btnElement.addEventListener('click', function() {
+          // step 3
+          const currentType = ipnElement.getAttribute('type')
+          // step 4
+          ipnElement.setAttribute(
+            'type',
+            currentType === 'password' ? 'text' : 'password'
+          )
+        })
             // $(document).ready(function(){
             // $('.add-to-cart').click(function(){
             // var id = $(this).data('id_sp');

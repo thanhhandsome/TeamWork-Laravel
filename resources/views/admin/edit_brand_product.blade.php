@@ -35,11 +35,7 @@
                         <div class="form-group " >
                             
                             <label for="exampleInputEmail1">Mã nhà sản xuất</label>
-<<<<<<< HEAD
-                            <input  type="text" value="{{$edit_value->mansx}}" name="brand_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
-=======
                             <input  type="text" value="{{$edit_value->mansx}}" readonly="{{$edit_value->mansx}}" name="brand_product_id"class="form-control form-control-sm" id="exampleInputEmail1" placeholder="Enter email">
->>>>>>> ec390cb04d015c96544b0610b3186f2478e95eaf
                             
                         </div>
                         <div class="form-group">
