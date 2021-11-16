@@ -8,34 +8,30 @@
                         </header>
                         <div class="panel-body">
                         <?php
-                        $message = Session()->get('message');
-                        if($message)
-                        {
-                            echo $message;
-                            Session()->put('message',null);
-                        }
-                        ?>
-                        @if(count($errors)>0)
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $err)
-                                    <li>
-                                        {!!$err  !!}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-                        <div class="position-center">
+	$message = Session()->get('message');
+	if($message)
+	{
+		echo $message;
+		Session()->put('message',null);
+	}
+	?>
+       @if(count($errors)>0)
+       <div class="alert alert-danger">
+           <ul>
+               @foreach ($errors->all() as $err)
+                   <li>
+                       {!!$err  !!}
+                   </li>
+               @endforeach
+           </ul>
+       </div>
+   @endif
+                            <div class="position-center">
                             @foreach($edit_product as $key=>$edit_value)
 
                            <form role="form" action="{{URL::to('/update-product/'.$edit_value->masp)}}" method="get" enctype="multipart/form-data">
                            {{csrf_field()}}
-                                
-                                <div class="form-group">
-                                  <label for="exampleInputPassword1">Mã san pham</label>
-                                  <textarea type="Text" value="{{($edit_value->masp)}}" readonly="{{$edit_value->masp}}" name="product_id" class="form-control" id="exampleInputPassword1" placeholder="Password"><?php echo ($edit_value->masp);?></textarea>
-                                </div>
+                           
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Ten san pham</label>
                                     <textarea type="Text" value="{{($edit_value->tensp)}}"  name="product_name" class="form-control" id="exampleInputPassword1" placeholder="Password"><?php echo ($edit_value->tensp);?></textarea>
@@ -101,5 +97,5 @@
                         </div>
                     </section>
 
-</div>
-@endsection
+            </div>
+            @endsection

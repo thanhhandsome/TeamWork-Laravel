@@ -1,6 +1,6 @@
 @extends('admin_layout')
 @section('admin_content')
-
+    
 
 <div class="table-agile-info">
     <div class="panel panel-default">
@@ -34,7 +34,7 @@
           <tr>
             <th style="width:20px;">
               <label class="i-checks m-b-none">
-
+               
               </label>
             </th>
             <th >Mã </th>
@@ -46,12 +46,12 @@
             <th>Mô tả</th>
             <th>NSX</th>
             <th>Loại</th>
-
+            
             <th style="width:30px;"></th>
           </tr>
         </thead>
         @foreach($all_product as $key => $cat_pro)
-
+        
         <tbody>
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
@@ -64,7 +64,7 @@
             <td>{{ $cat_pro->mota }}</td>
             <td>{{ $cat_pro->tennsx }}</td>
             <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
-
+            
             <td>
               <a href="{{URL::to('/edit-product/'.$cat_pro->masp)}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
@@ -72,7 +72,7 @@
 
               <i class="fa fa-times text-danger text"></i></a>
             </td>
-
+         
           </tr>
           @endforeach
         </tbody>
@@ -81,7 +81,11 @@
     <footer class="panel-footer">
       <div class="row">
         
+
         <div class="col-sm-5 text-center">
+
+        {{-- <div class="col-sm-5 text-center">
+
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
@@ -93,6 +97,6 @@
     </footer>
   </div>
 </div>
-
+    
 </div>
-@endsection 
+@endsection

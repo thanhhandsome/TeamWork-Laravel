@@ -55,6 +55,7 @@
 					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
 					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 					@endif
+
 					<li></li>
 					
 				</ul>
@@ -67,8 +68,9 @@
 </div><!--/header-bottom-->
 </header><!--/header-->
 <section>
+	
 <div class="container">
-<div class="row">
+<div class="row" style="margin-bottom: 20px">
 	<div class="col-sm-3">
 		<div class="left-sidebar">
 			<h2>Danh mục sản phẩm</h2>
@@ -117,6 +119,7 @@
 	<div class="col-sm-9 padding-right">
 		@yield('content')
 	</div>
+	
 </div>
 </div>
 </section>

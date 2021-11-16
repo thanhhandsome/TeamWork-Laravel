@@ -46,6 +46,7 @@ Route::get('/edit-brand-product/{brand_product_id}','NhaSanXuat@edit_brand');
 Route::get('/all-brand-product','NhaSanXuat@all_brand');
 Route::get('/delete-brand-product/{brand_product_id}','NhaSanXuat@delete_brand');
 
+//sanpham
 
 Route::post('/save-brand-product','NhaSanXuat@save_brand');
 Route::post('/update-brand-product/{brand_product_id}','NhaSanXuat@update_brand');
@@ -78,6 +79,14 @@ Route::post('/save-account','Pagecontroller@postdangky');
 Route::get('/getinfo/{info_id}','Pagecontroller@getinfo');
 Route::post('/save-info','Pagecontroller@save_info');
 
+Route::get('/dangnhap','Pagecontroller@getlogin');
+Route::post('/checkout','Pagecontroller@postlogin');
+Route::get('/dangky','Pagecontroller@getdangky');
+Route::get('/dangxuat','Pagecontroller@getdangxuat');
+Route::post('/save-account','Pagecontroller@postdangky');
+Route::get('/getinfo/{info_id}','Pagecontroller@getinfo');
+Route::post('/save-info','Pagecontroller@save_info');
+
 //Danh muc san pham trang chu
 Route::get('/danhmucsanpham/{category_id}','CategoryProduct@show_category_home');
 
@@ -91,7 +100,7 @@ Route::get('/chitietsanpham/{product_id}', 'ProductController@show_details_produ
 
 Route::post('/tim-kiem','HomeController@search');
 
-Route::get('/dangnhap','Pagecontroller@login');
+
 
 // Route::get('/dangnhap',[
 //     'as'=>'dangnhap',

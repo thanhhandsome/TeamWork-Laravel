@@ -58,6 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="images/2.png">
                 <span class="username">
+
                 <?php
     $name = Session()->get('manv');
     if($name)
@@ -67,6 +68,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     }
     ?>
                 </span>
+
+				<?php
+	$name = Session()->get('manv');
+	if($name)
+	{
+		echo $name;
+		
+	}
+	?>
+				</span>
+
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
@@ -108,7 +120,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </ul>
                 </li>
                
+
                 <li class="sub-menu">
+
+				<li class="sub-menu">
+
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Nhà sản xuất</span>
@@ -126,6 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Sản phẩm</span>
                     </a>
                     <ul class="sub">
+
                         <li><a href="{{URL::to("/add-product")}}">Them san pham</a></li>
                         <li><a href="{{URL::to("/all-product")}}">Liệt kê </a></li>
                         
@@ -133,6 +150,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </li>
                 
                 <li class="sub-menu">
+
+						<li><a href="{{URL::to("/add-product")}}">Them san pham</a></li>
+						<li><a href="{{URL::to("/all-product")}}">Liệt kê </a></li>
+                        
+                    </ul>
+                </li>
+				
+				<li class="sub-menu">
+
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Chi tiết sản phẩm</span>
@@ -149,20 +175,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Don hang</span>
                     </a>
                     <ul class="sub">
+
                         <li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>
                         
+
+						<li><a href="{{URL::to("/details-product")}}">Liet ke</a></li>
+						
+
                         
                     </ul>
                 </li>
                 @endrole
                 @role('admin')
+
                 <li class="sub-menu">
+
+				<li class="sub-menu">
+
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
                         <span>Quản lý nhân viên</span>
                     </a>
                     <ul class="sub">
+
                         <li><a href="{{URL::to("/dangky-nv")}}">Tạo tài khoản thành viên</a></li>
+
+						<li><a href="{{URL::to("/dangky-nv")}}">Tạo tài khoản thành viên</a></li>
+
                         <li><a href="{{URL::to("/danhsach")}}">Danh sách thành viên</a></li>
                         
                     </ul>

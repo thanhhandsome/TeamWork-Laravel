@@ -27,6 +27,10 @@ class register extends FormRequest
         'name' => 'required|max:50',
         'email' => 'required|max:50',
         'phone' => 'required|max:50|min:10',
+
+
+        'address' => 'required|max:50',
+
         'password' => 'required|max:50|min:11',
         ];
     }
@@ -35,15 +39,26 @@ class register extends FormRequest
         return [
             'name.required'=>'Vui lòng không bỏ trống',
             'phone.required'=>'Vui lòng không bỏ trống',
+
+
+            'address.required'=>'Vui lòng không bỏ trống',
+
             'password.required'=>'Vui lòng không bỏ trống',
             'email.required'=>'Vui lòng không bỏ trống',
             'name.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
             'name.min'=>'Vui lòng nhập nhập trên 10 ký tự',
             'email.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
             'phone.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
+
             'phone.min'=>'Vui lòng nhập số điện thoại 10 chữ sớ',
             'password.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
             'password.min'=>'Vui lòng nhập trên 11 ký tự',
+
+            'phone.min'=>'Vui lòng nhập nhập số điện thoại 10 chữ sớ',
+            'address.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
+            'password.max'=>'Vui lòng nhập không nhập ký tự vượt quá 50',
+            'password.min'=>'Vui lòng nhập nhập trên 11 ký tự',
+
 
           
             ];
