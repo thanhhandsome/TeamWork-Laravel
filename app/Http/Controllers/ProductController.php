@@ -28,7 +28,7 @@ class ProductController extends Controller
     {   $all_product = DB::table('sanpham')
         ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
         ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
-        ->get();
+        ->paginate(5);
         
         $manager_product = view('admin.all_product')
         ->with('all_product',$all_product);
@@ -48,6 +48,8 @@ class ProductController extends Controller
         $data = array();
         $data['masp'] = $request->product_id;
         $data['tensp'] = $request->product_name;
+        $data['soluong'] = $request->product_qty;
+        $data['sanphamdaban'] = $request->product_sold;
         $data['gia'] = $request->product_price;
         $data['hinh'] = $request->product_img;
         $data['mota'] = $request->product_img;
@@ -77,6 +79,8 @@ class ProductController extends Controller
     {
         $data = array();
         $data['tensp'] = $request->product_name;
+        $data['soluong'] = $request->product_qty;
+        $data['sanphamdaban'] = $request->product_sold;
         $data['gia'] = $request->product_price;
         $data['hinh'] = $request->product_img;
        
@@ -116,6 +120,19 @@ class ProductController extends Controller
         }
 
     }
-    
+    //end admin page
+    public function show_details_product($product_id)
+    {
+        $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+        $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
+
+        $details_product = DB::table('sanpham')->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->where('sanpham.masp', $product_id)->get();
+
+        foreach ($details_product as $key => $value) {
+            $category_id = $value->maloai;
+        }
+        $related_product = DB::table('sanpham')->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->where('loaisanpham.maloai', $category_id)->whereNotIn('sanpham.masp', [$product_id])->get();
+        return view('pages.product.show_details')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('product_details',$details_product)->with('relate',$related_product);
+    }
     
 }

@@ -5,7 +5,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
     <div class="panel-heading">
-      Responsive Table
+      Chi Tiết Loại Sản Phẩm
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -39,6 +39,8 @@
             </th>
             <th ><a class="text-danger">Mã loại sản phẩm</a></th>
             <th><a class="text-danger">Tên loại sản phẩm</a></th>
+            <th ><a class="text-danger">Slug</a></th>
+            <th><a class="text-danger">Danh mục cha</a></th>
             
             <th style="width:30px;"></th>
           </tr>
@@ -49,6 +51,8 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $cat_pro->maloai }}</td>
             <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
+            <td>{{ $cat_pro->slug_loaisp }}</td>
+            <td>{{ $cat_pro->category_parent }}</td>
             
             <td>
               <a href="{{URL::to('/edit-category-product/'.$cat_pro->maloai)}}" class="active" ui-toggle-class=""><i class="fa fa-pencil text-info text-active"></i></a>
@@ -68,12 +72,7 @@
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
           <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+            {!!$all_category->links()!!}
           </ul>
         </div>
       </div>

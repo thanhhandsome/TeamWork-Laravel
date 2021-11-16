@@ -41,6 +41,16 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="exampleInputPassword1">So Luong</label>
+                                    <textarea type="Text" name="product_qty" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">San Pham Da Ban</label>
+                                    <textarea type="Text" name="product_sold" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="exampleInputPassword1">Gia </label>
                                     <textarea type="Text" name="product_price" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
                                 </div>

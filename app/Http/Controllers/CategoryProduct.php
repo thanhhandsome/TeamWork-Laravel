@@ -14,7 +14,7 @@ class CategoryProduct extends Controller
         return view ('admin.add_category_product');
     }
     public function all_category()
-    {   $all_category_product = DB::table('loaisanpham')->get();
+    {   $all_category_product = DB::table('loaisanpham')->paginate(5);
         $manager_category_product = view('admin.all_category_product')->with('all_category',$all_category_product);
 
         return view ('admin_layout')->with('admin.all_category_product',$manager_category_product);
@@ -24,6 +24,8 @@ class CategoryProduct extends Controller
     $data = array();
     $data['maloai']=$request->category_product_id;
     $data['tenloai']=$request->category_product_name;
+    $data['slug_loaisp']=$request->slug_category_product;
+    $data['parent']=$request->category_product_parent;
     // echo'<pre>';
     //     print_r($data);
     //  echo'</pre>';
@@ -43,6 +45,8 @@ class CategoryProduct extends Controller
     $data = array();
     $data['maloai']=$request->category_product_id;
     $data['tenloai']=$request->category_product_name;
+    $data['slug_loaisp']=$request->slug_category_product;
+    $data['parent']=$request->category_product_parent;
     // echo'<pre>';
     //     print_r($data);
     //  echo'</pre>';
@@ -69,7 +73,7 @@ class CategoryProduct extends Controller
     {
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
-        $category_by_id = DB::table('sanpham')->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')->where('sanpham.maloai',$category_id)->get();
+        $category_by_id = DB::table('sanpham')->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')->where('loaisanpham.slug_loaisp',$category_id)->get();
         $category_name = DB::table('loaisanpham')->where('loaisanpham.maloai',$category_id)->limit(1)->get();
         return view ('pages.category.show_category')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
     }

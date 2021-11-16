@@ -39,10 +39,16 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên loại sản phẩm</label>
-                            <input type="text" name="category_product_name" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
+                            <input type="text" onkeyup="ChangeToSlug();" name="category_product_name" class="form-control form-control-lg" id="slug" placeholder="danh mục">
                         </div>
-                       
-                        
+                       <div class="form-group">
+                            <label for="exampleInputEmail1">Slug</label>
+                            <input type="text" name="slug_category_product" class="form-control" id="convert_slug" placeholder="Tên danh mục">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Danh mục cha</label>
+                            <input type="text" name="category_product_parent" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
+                        </div>
                        
                         <button type="submit" class="btn btn-info">Submit</button>
                     </form>

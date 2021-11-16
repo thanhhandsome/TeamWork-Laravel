@@ -38,63 +38,23 @@
 
 			<div class="shop-menu pull-right">
 				<ul class="nav navbar-nav">
+					
 					<li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
-					<li><a href=""><i  class="fa fa-github"></i> Link GitHUB</a></li>
-
-					<?php
-						$name = Session()->get('tenkh');
-						$id = Session()->get('makh');
-							
-					?>
-					<li><a href="{{URL::to('thongtin/'.$id)}}"><i class="fa fa-user"></i><?php echo $name?></a></li>
-
-
-
-					<?php 
-						$customer = Session()->get('makh');
-						$shipping = Session()->get('ma_tt');
-						if($customer != NULL && $shipping == NULL){
-					?>
-
-					<li><a href="{{URL::to('/checkout')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-
-					<?php
-						}elseif($customer != NULL && $shipping != NULL){
-					?>
-
+			
+					@if(Auth::check())
+					
+				
 					<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-
-					<?php
-						}else{
-					?>
+					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+					<li><a href="{{ URL::to('/getinfo/'.Auth::user()->id) }}"><i  class="fa fa-user"></i> {{ Auth::user()->email }}</a></li>
+					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
+					@else
+						<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+						<li><a href="{{URL::to('/dangky')}}"><i class="fa fa-lock"></i> Đăng ký</a></li>
 
 					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-					
-					<?php
-						}
-					?>
-
-
 					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-
-					<?php 
-						$customer = Session()->get('makh');
-						if($customer != NULL){
-					?>
-
-					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-user"></i> Đăng xuất</a></li>
-					
-					<?php
-						}else{
-					?>
-
-					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-					<li><a href="{{URL::to('/dangky')}}"><i class="fa fa-lock"></i> Đăng ky</a></li>
-
-					<?php
-						}
-					
-					?>
+					@endif
 					<li></li>
 					
 				</ul>
@@ -113,13 +73,32 @@
 		<div class="left-sidebar">
 			<h2>Danh mục sản phẩm</h2>
 			<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						@foreach($cate_product as $key => $value)
-						<h4 class="panel-title"><a href="{{URL::to('/danhmucsanpham/'.$value->maloai)}}">{{$value->tenloai}}</a></h4>
-						@endforeach
+				@foreach($cate_product as $key => $value)
+					<div class="panel panel-default">
+						@if($value->category_parent=='0')
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordian" href="#{{$value->slug_loaisp}}">
+										<span class="badge pull-right"><i class="fa fa-plus"></i></span>
+										{{$value->tenloai}}
+									</a>
+								</h4>
+								
+							</div>
+							<div id="{{$value->slug_loaisp}}" class="panel-collapse collapse">
+								<div class="panel-body">
+									<ul>
+										@foreach($cate_product as $key => $cate_sub)
+											@if($cate_sub->category_parent==$value->maloai)
+												<li><a href="{{URL::to('/danhmucsanpham/'.$cate_sub->slug_loaisp)}}"> {{$cate_sub->tenloai}} </a></li>
+											@endif
+										@endforeach
+									</ul>
+								</div>
+							</div>
+						@endif
 					</div>
-				</div>
+				@endforeach
 			</div><!--/category-products-->
 			
 			<div class="brands_products"><!--brands_products-->
@@ -141,3 +120,4 @@
 </div>
 </div>
 </section>
+<!-- {{URL::to('/danhmucsanpham/'.$value->maloai)}} -->

@@ -5,7 +5,7 @@
    <h2 class="title text-center">{{$catalog->tenloai}}</h2>
 @endforeach
 @foreach($category_by_id as $key => $product)
-<div class="col-sm-4" style="width:40%; height: 40%">
+<div class="col-sm-4" style="width:25%; height: 25%">
 	<div class="product-image-wrapper">
 		<div class="single-products">
 			<div class="productinfo text-center">

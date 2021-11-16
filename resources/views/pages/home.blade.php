@@ -3,7 +3,7 @@
 <div class="features_items"><!--features_items-->
 <h2 class="title text-center">Sản phẩm mới</h2>
 @foreach($all_product as $key => $product)
-<div class="col-sm-4" style="width:40%; height: 40%">
+<div class="col-sm-4" style="width:25%; height: 25%">
 	<div class="product-image-wrapper">
 		<div class="single-products">
 			<div class="productinfo text-center">

@@ -40,9 +40,16 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên loại sản phẩm</label>
-                            <input type="text" value="{{$edit_value->tenloai}}" name="category_product_name" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
+                            <input type="text" value="{{$edit_value->tenloai}}" onkeyup="ChangeToSlug();" name="category_product_name" class="form-control form-control-lg" id="slug">
                         </div>
-                       
+                       <div class="form-group">
+                            <label for="exampleInputEmail1">Slug</label>
+                            <input type="text" value="{{$edit_value->slug_loaisp}}" name="slug_category_product" class="form-control" id="convert_slug" >
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Danh mục cha</label>
+                            <input type="text" name="{{$edit_value->parent}}" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
+                        </div>
                         
                        
                         <button type="submit" class="btn btn-info">Update</button>

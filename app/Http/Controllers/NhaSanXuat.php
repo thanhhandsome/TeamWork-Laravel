@@ -15,7 +15,7 @@ class NhaSanXuat extends Controller
         return view ('admin.add_brand_product');
     }
     public function all_brand()
-    {   $all_brand_product = DB::table('nhasx')->get();
+    {   $all_brand_product = DB::table('nhasx')->paginate(2);
         $manager_brand_product = view('admin.all_brand_product')->with('all_brand',$all_brand_product);
 
         return view ('admin_layout')->with('admin.all_brand_product',$manager_brand_product);
@@ -52,9 +52,17 @@ class NhaSanXuat extends Controller
     }
     public function delete_brand($brand_product_id)
     {
-    DB::table('nhasx')->where('mansx',$brand_product_id)->delete();
-    Session::put('message','xóa nhà sản xuất thành công');
-    return Redirect::to('all-brand-product');
+        $a = DB::table('sanpham')->where('mansx',$brand_product_id)->count();
+        if($a==0)
+        {
+            DB::table('nhasx')->where('mansx',$brand_product_id)->delete();
+            Session::put('message','xóa nhà sản xuất thành công');
+            return Redirect::to('all-brand-product');
+        }
+        else
+        {
+            echo 'Erorr!!!';
+        }
     }
 
     public function show_brand_home($brand_id)
