@@ -70,7 +70,7 @@ class Admincontroller extends Controller
     }
     else
     {
-        return Redirect::to('/trangchu');
+        return Redirect::to('/admin');
     }
     
 
