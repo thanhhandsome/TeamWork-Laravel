@@ -46,6 +46,7 @@ Route::get('/edit-brand-product/{brand_product_id}','NhaSanXuat@edit_brand');
 Route::get('/all-brand-product','NhaSanXuat@all_brand');
 Route::get('/delete-brand-product/{brand_product_id}','NhaSanXuat@delete_brand');
 
+//sanpham
 
 Route::post('/save-brand-product','NhaSanXuat@save_brand');
 Route::post('/update-brand-product/{brand_product_id}','NhaSanXuat@update_brand');

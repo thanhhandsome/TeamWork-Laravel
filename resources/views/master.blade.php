@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | SHOP BÁN ĐIỆN THOẠI</title>
+    <title>Home | SHOP BÁN ĐỒ GIA DỤNG</title>
     <base href="{{asset('')}}">
     <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
@@ -34,6 +34,9 @@
 	<script src="{{('public/frontend/js/price-range.js')}}"></script>
     <script src="{{('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{('public/frontend/js/main.js')}}"></script>
-    <script></script>
+
+    
+       
+@yield('script')
 </body>
 </html>

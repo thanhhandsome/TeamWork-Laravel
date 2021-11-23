@@ -27,7 +27,15 @@
 <body>
 	<div class="container text-center">
 		<div class="logo-404">
+<<<<<<< HEAD
 			<a href="{{URL::to('/trang-chu')}}"><img src="{{('public/frontend/img/back.png')}}" alt="" /></a>
+=======
+
+			<a href="{{URL::to('/trang-chu')}}"><img src="{{('public/frontend/img/logo.png')}}" alt="" /></a>
+
+			<a href="index.html"><img src="{{('public/frontend/images/home/logo.png')}}" alt="" /></a>
+
+>>>>>>> 5cedf79dd070ab0068a969b8a110aa47bedb590d
 		</div>
 		<div class="content-404">
 			<img src="{{('public/frontend/img/404.png')}}" class="img-responsive" alt="" />

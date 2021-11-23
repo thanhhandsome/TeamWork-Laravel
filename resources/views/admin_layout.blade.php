@@ -58,6 +58,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="images/2.png">
                 <span class="username">
+
                 <?php
                     $name = Auth::user()->name;
                     if($name)
@@ -67,6 +68,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     }
                 ?>
                 </span>
+
+				<?php
+	$name = Session()->get('manv');
+	if($name)
+	{
+		echo $name;
+		
+	}
+	?>
+				</span>
+
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">

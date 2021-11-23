@@ -56,6 +56,7 @@ class Pagecontroller extends Controller
     }
     
     public function getlogin()
+
     {       
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
 
@@ -116,25 +117,50 @@ class Pagecontroller extends Controller
 
     public function getinfo()
 
+<<<<<<< HEAD
  
     {       $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+=======
+    {       $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+=======
+    {   	$cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
+>>>>>>> 5cedf79dd070ab0068a969b8a110aa47bedb590d
 
             $brand_product = DB::table('nhasx')->orderby('mansx','desc')->get();
         return view('pages.info')->with('brand_product',$brand_product)->with('cate_product',$cate_product);
     }
     public function save_info(infocusrequest $request)
+<<<<<<< HEAD
 {         $data = array();
         
         $a=$request->id;
+=======
+
+    {         
+        $data = array();
+        // $id_user = Auth::user()->id;
+
+    {   	  $data = array();
+        $id_user = Auth::user()->id;
+
+>>>>>>> 5cedf79dd070ab0068a969b8a110aa47bedb590d
         $data['name']=$request->name;
         $data['password']=($request->password);
         $data['phone']=$request->phone;
         $data['diachi']=$request->address;
         
 
+<<<<<<< HEAD
         DB::table('khachhang')->where('id',$a)->update($data);
 
         return Redirect::to('getinfo/'.$a);
+=======
+        DB::table('cus')->where('id',$id_user)->update($data);
+
+        DB::table('khachhang')->where('id',$id_user)->update($data);
+
+        return Redirect::to('getinfo/'.$id_user);
+>>>>>>> 5cedf79dd070ab0068a969b8a110aa47bedb590d
     }
 
     // public function getGiohang()
