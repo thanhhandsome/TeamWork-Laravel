@@ -41,20 +41,31 @@
 					
 					<li><a href="{{URL::to('/trang-chu')}}" class="active">Trang chủ</a></li>
 			
-					@if(Auth::check())
+					<?php 
+						$customer = Session()->get('makh');
+						$email = Session()->get('email');
+						if($customer){
+					?>
 					
 				
 					<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
 					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-					<li><a href="{{ URL::to('/getinfo/'.Auth::user()->id) }}"><i  class="fa fa-user"></i> {{ Auth::user()->email }}</a></li>
+					<li><a href="{{ URL::to('/getinfo/'.Session()->get('makh')) }}"><i  class="fa fa-user"></i><?php echo $email ?></a></li>
 					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
-					@else
+					<?php
+						}
+						else{
+					?>
 						<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
 						<li><a href="{{URL::to('/dangky')}}"><i class="fa fa-lock"></i> Đăng ký</a></li>
 
 					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-					@endif
+					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+				
+					<?php
+					}
+			
+					?>
 					<li></li>
 					
 				</ul>
@@ -111,6 +122,26 @@
 					</ul>
 				</div>
 			</div><!--/brands_products-->
+			<div class="price-range">
+				<h2 for="amount" >Lọc giá theo</h2>
+				<form>
+					<div id="slider-range"></div>
+					<style type="text/css">
+						.style-range p{
+							float: left;
+							width: 37%
+						}
+					</style>
+					<div class="style-range">
+						<p><input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></p>
+							<input type="hidden" name="start_price" id="start_price">
+							<input type="hidden" name="end_price" id="end_price">
+						<br>
+						<div class="clearfix"></div>
+						<p><input type="submit" name="filter_price" value="Lọc giá" class="btn btn-sm btn-default"></p>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
 	

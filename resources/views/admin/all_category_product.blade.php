@@ -40,7 +40,7 @@
             <th ><a class="text-danger">Mã loại sản phẩm</a></th>
             <th><a class="text-danger">Tên loại sản phẩm</a></th>
             <th ><a class="text-danger">Slug</a></th>
-            <th><a class="text-danger">Danh mục cha</a></th>
+            <th><a class="text-danger">Thuộc danh mục</a></th>
             
             <th style="width:30px;"></th>
           </tr>
@@ -52,7 +52,17 @@
             <td>{{ $cat_pro->maloai }}</td>
             <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
             <td>{{ $cat_pro->slug_loaisp }}</td>
-            <td>{{ $cat_pro->category_parent }}</td>
+            <td>
+              @if($cat_pro->category_parent=='0')
+                <span style="color: red;">danh mục cha</span>
+              @else
+                @foreach($category_product as $key => $cat_sub)
+                  @if($cat_sub->maloai==$cat_pro->category_parent)
+                    <span style="color: blue;">{{ $cat_sub->tenloai }}</span>
+                  @endif
+                @endforeach
+              @endif
+            </td>
             
             <td>
               <a href="{{URL::to('/edit-category-product/'.$cat_pro->maloai)}}" class="active" ui-toggle-class=""><i class="fa fa-pencil text-info text-active"></i></a>

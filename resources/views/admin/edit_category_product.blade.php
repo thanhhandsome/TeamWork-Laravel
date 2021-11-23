@@ -47,8 +47,20 @@
                             <input type="text" value="{{$edit_value->slug_loaisp}}" name="slug_category_product" class="form-control" id="convert_slug" >
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Danh mục cha</label>
-                            <input type="text" name="{{$edit_value->parent}}" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
+                            <label for="exampleInputPassword1">Thuộc danh mục</label>
+                                <select name="category_product_parent" class="form-control input-sm m-bot15">
+                                    <option value="0">--------Danh mục cha--------</option>
+                                    @foreach($category as $key => $val)
+                                        @if($val->category_parent=='0')
+                                            <option {{ ($val->maloai==$edit_value->maloai) ? 'selected' : '' }} value="{{$val->maloai}}">{{$val->tenloai}}</option>
+                                        @endif
+                                        @foreach($category as $key => $val2)
+                                            @if($val2->category_parent==$val->maloai)
+                                                <option {{ ($val2->maloai==$edit_value->maloai) ? 'selected' : '' }}  value="{{$val2->maloai}}">---{{$val2->tenloai}}</option>
+                                            @endif
+                                        @endforeach
+                                    @endforeach            
+                                </select>
                         </div>
                         
                        

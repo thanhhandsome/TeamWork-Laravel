@@ -4,15 +4,20 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Home | SHOP BÁN ĐỒ GIA DỤNG</title>
-        <base href="{{asset('')}}">
-        <link href="{{('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/price-range.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/animate.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/main.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/responsive.css')}}" rel="stylesheet">
-        <link href="{{('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+
+
+        <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/price-range.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/animate.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/sweetalert.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/lightslider.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/prettify.css')}}" rel="stylesheet">
+        <link href="{{asset('public/frontend/css/lightgallery.min.css')}}" rel="stylesheet">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
         <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
@@ -28,13 +33,17 @@
             @include('header')
             
             @include('footer')
-            <script src="{{('public/frontend/js/jquery.js')}}"></script>
-            <script src="{{('public/frontend/js/bootstrap.min.js')}}"></script>
-            <script src="{{('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
-            <script src="{{('public/frontend/js/price-range.js')}}"></script>
-            <script src="{{('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
-            <script src="{{('public/frontend/js/main.js')}}"></script>
-            <script src="{{('public/frontend/js/sweetalert.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/jquery.js')}}"></script>
+            <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/price-range.js')}}"></script>
+            <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
+            <script src="{{asset('public/frontend/js/main.js')}}"></script>
+            <script src="{{asset('public/frontend/js/lightslider.js')}}"></script>
+            <script src="{{asset('public/frontend/js/sweetalert.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/lightgallery-all.min.js')}}"></script>
+            <script src="{{asset('public/frontend/js/prettify.js')}}"></script>
+            <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
             <script type="text/javascript">
             // $(document).ready(function(){
             // $('.add-to-cart').click(function(){
@@ -68,6 +77,57 @@
             // });
             // });
             // });
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+
+                    $( "#slider-range" ).slider({
+                      orientation: "horizontal",
+                      range: true,
+
+                      min: {{$min_price}},
+                      max: {{$max_price}},
+
+                      values: [ {{$min_price}}, {{$max_price}} ],
+                      step: 10000,
+                      slide: function( event, ui ) {
+                        $( "#amount" ).val( "đ" + ui.values[ 0 ] + " - đ" + ui.values[ 1 ] );
+                        $( "#start_price" ).val( ui.values[ 0 ] );
+                        $( "#end_price" ).val( ui.values[ 1 ] );
+                      }
+                    });
+                    $( "#amount" ).val( "đ" + $( "#slider-range" ).slider( "values", 0 ) +
+                      " - đ" + $( "#slider-range" ).slider( "values", 1 ) );
+                  });
+            </script>
+            <script type="text/javascript">
+            $(document).ready(function() {
+            $('#imageGallery').lightSlider({
+                gallery:true,
+                item:1,
+                loop:true,
+                thumbItem:3,
+                slideMargin:0,
+                enableDrag: false,
+                currentPagerPosition:'left',
+                onSliderLoad: function(el) {
+                    el.lightGallery({
+                        selector: '#imageGallery .lslide'
+                        });
+                    }   
+                });  
+              });
+            </script>
+            <script type="text/javascript">
+            $(document).ready(function() {
+            $('#sort').on('change',function(){
+                   var url = $(this).val();
+                   if (url) {
+                    window.location = url;
+                   }
+                   return false;
+                });  
+              });
             </script>
         </body>
     </html>

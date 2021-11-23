@@ -46,8 +46,13 @@
                             <input type="text" name="slug_category_product" class="form-control" id="convert_slug" placeholder="Tên danh mục">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Danh mục cha</label>
-                            <input type="text" name="category_product_parent" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Enter email">
+                            <label for="exampleInputPassword1">Thuộc danh mục</label>
+                                <select name="category_product_parent" class="form-control input-sm m-bot15">
+                                    <option value="0">---Danh mục cha---</option>
+                                    @foreach($category as $key => $val)
+                                        <option value="{{$val->maloai}}">{{$val->tenloai}}</option>
+                                    @endforeach            
+                                </select>
                         </div>
                        
                         <button type="submit" class="btn btn-info">Submit</button>

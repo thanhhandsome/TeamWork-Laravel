@@ -28,7 +28,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{("public/frontend/img/iframe2.png")}}" alt="" />
+										<img src="{{asset("public/frontend/img/iframe2.png")}}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -43,7 +43,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{("public/frontend/img/iframe3.png")}}" alt="" />
+										<img src="{{asset("public/frontend/img/iframe3.png")}}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -58,7 +58,7 @@
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
-										<img src="{{("public/frontend/img/iframe4.png")}}" alt="" />
+										<img src="{{asset("public/frontend/img/iframe4.png")}}" alt="" />
 									</div>
 									<div class="overlay-icon">
 										<i class="fa fa-play-circle-o"></i>
@@ -71,7 +71,7 @@
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
-							<img src="{{("public/frontend/img/map.png")}}" alt="" />
+							<img src="{{asset("public/frontend/img/map.png")}}" alt="" />
 							<p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
 						</div>
 					</div>

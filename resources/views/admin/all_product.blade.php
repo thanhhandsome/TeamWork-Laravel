@@ -40,7 +40,6 @@
             <th >Mã </th>
             <th>Tên sản phẩm</th>
             <th>Số lượng</th>
-            <th>Sản phẩm đã bán</th>
             <th>Giá</th>
             <th>Hình</th>
             <th>Mô tả</th>
@@ -58,7 +57,6 @@
             <td>{{ $cat_pro->masp }}</td>
             <td>{{ $cat_pro->tensp }}</td>
             <td>{{ $cat_pro->soluong }}</td>
-            <td>{{ $cat_pro->sanphamdaban }}</td>
             <td>{{ $cat_pro->gia }}</td>
             <td>{{ $cat_pro->hinh }}</td>
             <td>{{ $cat_pro->mota }}</td>
@@ -69,7 +67,6 @@
               <a href="{{URL::to('/edit-product/'.$cat_pro->masp)}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
               <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/'.$cat_pro->masp)}}" class="active" ui-toggle-class="">
-
               <i class="fa fa-times text-danger text"></i></a>
             </td>
 

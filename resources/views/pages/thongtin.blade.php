@@ -10,10 +10,10 @@
                         <div class="your-order-item">
                       <?php 
 
-                        $id =Session()->get('manv');
-                        $name = Session()->get('tenkh');
+                        $id =Session()->get('id');
+                        $name = Session()->get('name');
                         $email = Session()->get('email');
-                        $phone = Session()->get('sodienthoai');
+                        $phone = Session()->get('phone');
                         $diachi = Session()->get('diachi');
                         ?>
                         

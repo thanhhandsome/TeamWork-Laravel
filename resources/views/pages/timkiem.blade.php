@@ -45,6 +45,6 @@
                             </div>
                         </div>
                         @endforeach
-                    </div><!--features_items--> 
+</div><!--features_items--> 
         <!--/recommended_items-->
 @endsection

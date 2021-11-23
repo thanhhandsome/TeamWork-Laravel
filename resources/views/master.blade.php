@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home | SHOP BÁN ĐIỆN THOẠI</title>
     <base href="{{asset('')}}">
-    <link href="{{('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
-    <link href="{{('public/frontend/css/price-range.css')}}" rel="stylesheet">
-    <link href="{{('public/frontend/css/animate.css')}}" rel="stylesheet">
-	<link href="{{('public/frontend/css/main.css')}}" rel="stylesheet">
-	<link href="{{('public/frontend/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/price-range.css')}}" rel="stylesheet">
+    <link href="{{asset('public/frontend/css/animate.css')}}" rel="stylesheet">
+	<link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
+	<link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>

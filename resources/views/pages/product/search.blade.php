@@ -11,7 +11,21 @@
                                                 <img width="100" height="300" src="{{URL::to('public/frontend/img/'.$product->hinh)}}" alt="" />
                                                 <h2>{{number_format($product->gia).' '.'VNĐ'}}</h2>
                                                 <p>{{$product->tensp}}</p>
+                                                <?php
+                                                $cus = Session()->get('makh');
+                                                if($cus)
+                                                {
+                                                ?>
                                                 <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                </a>
+                                                <?php
+                                                }else {
+                                                ?>
+                                                    <a href="{{URL::to('/dangnhap')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                                </a>
+                                                <?php 
+                                                }
+                                                ?>
                                             </div>
                                     </div>
                                 </div>
@@ -20,16 +34,16 @@
                         
 </div><!--/recommended_items-->
 <!-- <footer class="panel-footer">
-    <div class="row">
-                                
+      <div class="row">
+        
         <div class="col-sm-5 text-center">
-            <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>
         <div class="col-sm-7 text-right text-center-xs">                
-            <ul class="pagination pagination-sm m-t-none m-b-none">
-                <li>1</li>
-            </ul>
+          <ul class="pagination pagination-sm m-t-none m-b-none">
+            <li>1</li>
+          </ul>
         </div>
-    </div>
+      </div>
 </footer> -->
 @endsection

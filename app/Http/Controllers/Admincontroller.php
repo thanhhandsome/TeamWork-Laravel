@@ -48,6 +48,7 @@ class Admincontroller extends Controller
         $matkhau = $request['password'];
         // dd($request->all());
        //lay gioi han 1 user
+        
     
 
        
@@ -59,6 +60,7 @@ class Admincontroller extends Controller
         // auth()->user()->assignRole('nhanvien');
         // dd(auth()->user());
         // auth()->assignRole('nhanvien');
+        
       
         return Redirect::to('/dashboard');
 

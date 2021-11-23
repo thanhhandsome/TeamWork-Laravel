@@ -6,16 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\LoaiSP;
+use App\loaisanpham;
+// use App\sanpham;
+// use App\chitietsp;
 session_start();
 class CategoryProduct extends Controller
 {
     public function add_category()
     {
-        return view ('admin.add_category_product');
+        $category = loaisanpham::where('category_parent','0')->get();
+        return view ('admin.add_category_product')->with(compact('category'));
     }
     public function all_category()
-    {   $all_category_product = DB::table('loaisanpham')->paginate(5);
-        $manager_category_product = view('admin.all_category_product')->with('all_category',$all_category_product);
+    {   
+        $category_product = loaisanpham::where('category_parent','0')->get();
+        $all_category_product = DB::table('loaisanpham')->paginate(5);
+        $manager_category_product = view('admin.all_category_product')->with('all_category',$all_category_product)->with('category_product',$category_product);
 
         return view ('admin_layout')->with('admin.all_category_product',$manager_category_product);
     }
@@ -35,8 +41,9 @@ class CategoryProduct extends Controller
     }
     public function edit_category($category_product_id)
     {   
+        $category = loaisanpham::orderby('maloai','desc')->get();
         $edit_category_product = DB::table('loaisanpham')->where('maloai',$category_product_id)->get();
-        $manager_category_product = view('admin.edit_category_product')->with('edit_category',$edit_category_product);
+        $manager_category_product = view('admin.edit_category_product')->with('edit_category',$edit_category_product)->with('category',$category);
 
         return view ('admin_layout')->with('admin.edit_category_product',$manager_category_product);
     }
@@ -73,8 +80,27 @@ class CategoryProduct extends Controller
     {
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
-        $category_by_id = DB::table('sanpham')->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')->where('loaisanpham.slug_loaisp',$category_id)->get();
-        $category_name = DB::table('loaisanpham')->where('loaisanpham.maloai',$category_id)->limit(1)->get();
+        $category_by_id = DB::table('sanpham')->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')->join('chitietsp','sanpham.masp','=','chitietsp.masp')->where('loaisanpham.slug_loaisp',$category_id)->orderby('gia','asc')->paginate(5);
+        $category_name = DB::table('loaisanpham')->where('loaisanpham.slug_loaisp',$category_id)->limit(1)->get();
+        // $category_by_slug = loaisanpham::where('slug_loaisp',$category_id)->get();
+        // foreach ($category_by_slug as $key => $cate) {
+        //     $category_id = $cate->maloai;
+        // }
+
+        // $min_price = sanpham::min('gia');
+        // $max_price = sanpham::max('gia');
+        // // $max_price_range = $max_price + 1000000;
+
+        // if(isset($_GET['start_price']) && isset($_GET['end_price']))
+        // {
+        //     $min_price = $_GET['start_price'];
+        //     $max_price = $_GET['end_price'];
+        //     $category_by_id = sanpham::with('category')->whereBetween('gia',[$min_price,$max_price])->orderby('gia','asc')->paginate(5);
+        // }
+        // else{
+
+        //     $category_by_id = sanpham::with('category')->where('maloai',$category_id)->orderby('masp','desc')->paginate(5);
+        // }
         return view ('pages.category.show_category')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
     }
 }
