@@ -37,11 +37,12 @@
                             </div>
                             <div class="your-order-item">
                                 <div class="pull-left"><p class="your-order-f18">Địa chỉ:</p></div>
-                                <div class="pull-right"><h5 class="color-black"><?php echo $diachi;?></h5></div>
+                                <div class="pull-right"><h5 class="color-black"><?php echo $diachi ?></h5></div>
                             
                 
                                 <div class="clearfix"></div>
                             </div>
+                            
 						</form>
 					</div><!--/login form-->
 				</div>

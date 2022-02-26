@@ -18,7 +18,7 @@ class Sanphamreq extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Get the validation rules31313 that apply to the request.
      *
      * @return array
      */

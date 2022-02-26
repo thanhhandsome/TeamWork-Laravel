@@ -1,38 +1,45 @@
 @extends('welcome')
 @section('content')
-<div class="features_items"><!--features_items-->
-<h2 class="title text-center">Sản phẩm mới</h2>
-<div class="row">
-	<div class="col-sm-4">
-		<label for="amount" >Lọc theo kg</label>
-			<form>
-			@csrf
-				<select name="sort" id="sort" class="form-control">
-					<option value="{{Request::url()}}?sort_by=none">lọc</option>
-					<option value="{{Request::url()}}?sort_by=1-50">1kg-50kg</option>
-					<option value="{{Request::url()}}?sort_by=50-500">50kg-500kg</option>
-				</select>
 
-			</form>
-	</div>
-</div>
-@foreach($all_product as $key => $product)
-<div class="col-sm-4">
-	<div class="product-image-wrapper">
-		<div class="single-products">
-			<div class="productinfo text-center">
-					<a href="{{URL::to('/chitietsanpham/'.$product->mactsp)}}">
-					<img width="200" height="200" src="{{URL::to('public/frontend/img/'.$product->hinh)}}" alt="" />
+
+<div class="features_items"><!--features_items-->
+	<h2 class="title text-center">Sản phẩm mới</h2>
+	@foreach($all_product as $key => $product)
+	@if($product->soluongsp>0)
+	<div class="col-sm-4">
+		<div class="product-image-wrapper">
+			<div class="single-products">
+				<div class="productinfo text-center">
+					<a  href="{{URL::to('/chitietsanpham/'.$product->mactsp)}}">
+						
+					<img width="200px" height="200px" src="{{URL::to('public/frontend/img/'.$product->hinh)}}" alt="" />
+
 					<h2>{{number_format($product->gia).' '.'VNĐ'}}</h2>
-					<p>{{$product->tensp}}</p>
+				@foreach ($product_km as $a )
+				@if($a->masp == $product->masp && $time <= $a->ngaykt && $time >=$a->ngaybd)
+				<h4 style="color:teal">Giá sốc: {{number_format($a->giagiam).''.'VNĐ'}}</h3>
+					
+				
+					@endif
+				@endforeach
+					
 					<p>{{$product->khoiluong}}</p>
+					<p>{{$product->tensp}}</p>
 					<?php
 					$cus = Session()->get('makh');
 					if($cus)
 					{
 					?>
-					<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-					</a>
+					<form action="{{URL::to('/save-cart')}}" method="post">
+						{{ csrf_field() }}
+						<input name="sl" type="hidden" min="1" value="1" />
+						<input name="productid_hidden" type="hidden" value="{{$product->masp}}" />
+										
+										<button type="Submit" class="btn btn-fefault cart">
+											<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+					</form>
 					<?php
 					}else {
 					?>
@@ -41,11 +48,24 @@
 					<?php 
 					}
 					?>
+
 			</div>
+			@foreach ($product_km as $a )
+				@if($a->masp == $product->masp && $time <= $a->ngaykt && $time >=$a->ngaybd)
+			
+				<img width="20%" src="{{URL::to('public/frontend/img/sale.png')}}" class="new" alt="">
+				
+					@endif
+				@endforeach
+			
 		</div>
+		
 	</div>
 </div>
+@endif
 @endforeach
+
+
 </div><!--features_items-->
 <footer class="panel-footer">
       <div class="row">

@@ -43,7 +43,10 @@
                                 </div>
 
                             
-                               
+                               <div class="form-group">
+                                    <label for="exampleInputPassword1">Số lượng</label>
+                                    <input type="number" name="sl" class="form-control" id="exampleInputPassword1" placeholder="Password"/>
+                                </div>
                               
                             
 

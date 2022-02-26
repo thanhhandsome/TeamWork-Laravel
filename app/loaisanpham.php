@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class loaisanpham extends Model
 {
-	protected $primaryKey = 'maloai';
+	// protected $primaryKey = 'maloai';
     protected $table = 'loaisanpham';
 
     public function product()

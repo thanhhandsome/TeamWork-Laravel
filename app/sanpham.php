@@ -8,6 +8,7 @@ class sanpham extends Model
 {
 	protected $primaryKey = 'masp';
     protected $table = 'sanpham';
+    protected $fillable = ['masp','tensp','gia','hinh','maloai','mansx'];
 
     public function category()
     {

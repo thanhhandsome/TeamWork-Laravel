@@ -1,0 +1,1 @@
+<h2>Gửi hóa đơn!Đây là tin nhẵn tự động vui lòng không trả lời<h2>

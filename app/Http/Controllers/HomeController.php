@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\loaisanpham;
 use App\sanpham;
-use App\chitietsp;
+use Illuminate\Support\Carbon;
+use Barryvdh\DomPDF\Facade as PDF;
 session_start();
 
 class HomeController extends Controller
@@ -20,9 +21,23 @@ class HomeController extends Controller
 
         $all_product = DB::table('sanpham')->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
         ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
-        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->orderby('gia','asc')->paginate(5);
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->orderby('gia','asc')->paginate(9);
         $hinh = DB::table('hinhanh')->limit(1)->get();
 
+
+        $product_km = DB::table('sanpham')
+        ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
+        ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+        ->get();
+
+
+
+
+        
+        $time = Carbon::now('Asia/Ho_Chi_Minh');
         // $product = sanpham::where('masp')->get();
         // foreach ($product as $key => $val) {
         //     $category_id = $val->mactsp;
@@ -40,17 +55,17 @@ class HomeController extends Controller
         {
             $sort_by = $_GET['sort_by'];
             if ($sort_by=='1-50') {
-                $all_product = chitietsp::with('product')->whereBetween('khoiluong',[1,50])->orderby('khoiluong','asc')->paginate(5);
+                $all_product = DB::table('sanpham')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->whereBetween('chitietsp.khoiluong',[1,50])->orderby('chitietsp.khoiluong','asc')->paginate(9);
             }
-            elseif ($sort_by=='50-500') {
-                $all_product = chitietsp::with('product')->whereBetween('khoiluong',[50,500])->orderby('khoiluong','asc')->paginate(5);
+            elseif ($sort_by=='100-500') {
+                $all_product = DB::table('sanpham')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->whereBetween('chitietsp.khoiluong',[100,500])->orderby('chitietsp.khoiluong','asc')->paginate(9);
             }
-            elseif(isset($_GET['start_price']) && isset($_GET['end_price']))
-            {
-                $min_price = $_GET['start_price'];
-                $max_price = $_GET['end_price'];
-                $all_product = sanpham::with('category')->whereBetween('gia',[$min_price,$max_price])->orderby('gia','asc')->paginate(5);
-            }
+        }
+        if(isset($_GET['start_price']) && isset($_GET['end_price']))
+        {
+            $min_price = $_GET['start_price'];
+            $max_price = $_GET['end_price'];
+            $all_product = DB::table('sanpham')->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->whereBetween('sanpham.gia',[$min_price,$max_price])->orderby('sanpham.gia','asc')->paginate(9);
         }
         // else{
 
@@ -59,7 +74,7 @@ class HomeController extends Controller
 
 
         return view('pages.home')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)
-        ->with('all_product',$all_product)->with('hinh',$hinh)->with('min_price',$min_price)->with('max_price',$max_price);
+        ->with('all_product',$all_product)->with('hinh',$hinh)->with('min_price',$min_price)->with('max_price',$max_price)->with('product_km',$product_km)->with('time',$time);
        
     }
     public function search(Request $request){
@@ -69,14 +84,40 @@ class HomeController extends Controller
         $keywords = $request->tukhoa;
 
 
-        $product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->count();
+        $product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')
+        ->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->count();
 
         $search_product = DB::table('sanpham')->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
-        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')->where('sanpham.tensp','like','%'.$keywords.'%')->orwhere('loaisanpham.tenloai','like','%'.$keywords.'%')->orwhere('nhasx.tennsx','like','%'.$keywords.'%')->orwhere('chitietsp.mausac','like','%'.$keywords.'%')->get();
+        ->join('chitietsp', 'sanpham.masp', '=', 'chitietsp.masp')
+        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->where('sanpham.tensp','like','%'.$keywords.'%')
+        ->orwhere('loaisanpham.tenloai','like','%'.$keywords.'%')
+        ->orwhere('nhasx.tennsx','like','%'.$keywords.'%')->orderBy('sanpham.masp','asc')->get();
+    
+        $hinh = DB::table('hinhanh')->where('status','1')->get();
+  
+        $product_km = DB::table('sanpham')
+            ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+            ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+            ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
+            ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+            ->get(); 
+     
+    
+     
+     
+        $time=Carbon::now('Asia/Ho_Chi_Minh');
 
         if($product>0)
         {
-        return view('pages.product.search')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('search_product', $search_product);
+        return view('pages.product.search')
+        ->with('cate_product',$cate_product)
+        ->with('product_km',$product_km)
+        ->with('hinh',$hinh)
+        ->with('time',$time)
+        ->with('brand_product',$cate_brand)
+        ->with('search_product', $search_product);
+
 
         }
         else
@@ -84,20 +125,20 @@ class HomeController extends Controller
         return view('pages.notfound');
         }
 
-        $product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->count();
-        $search_product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->get();
+        // $product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->count();
+        // $search_product = DB::table('sanpham')->where('tensp','like','%'.$keywords.'%')->orwhere('maloai','like','%'.$keywords.'%')->orwhere('mansx','like','%'.$keywords.'%')->get();
 
         
-    if($product>0)
-    {
-        return view('pages.product.search')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('search_product', $search_product);
+    // if($product>0)
+    // {
+    //     return view('pages.product.search')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('search_product', $search_product);
 
 
-    }
-    else
-    {
-        return view('pages.notfound');
-    }
+    // }
+    // else
+    // {
+    //     return view('pages.notfound');
+    // }
   
 }
 }

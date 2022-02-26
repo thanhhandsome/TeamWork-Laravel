@@ -43,13 +43,13 @@
 			
 					<?php 
 						$customer = Session()->get('makh');
-						$email = Session()->get('email');
+						$email = Session()->get('name');
 						if($customer){
 					?>
 					
-				
+					<li><a href="{{URL::to('/check-history')}}"><i class="fa fa-crosshairs"></i>Đơn hàng</a></li>
 					<li><a href="{{URL::to('/payment')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+					<li><a href="{{URL::to('/show-cart')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 					<li><a href="{{ URL::to('/getinfo/'.Session()->get('makh')) }}"><i  class="fa fa-user"></i><?php echo $email ?></a></li>
 					<li><a href="{{URL::to('/dangxuat')}}"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
 					<?php
@@ -60,7 +60,7 @@
 						<li><a href="{{URL::to('/dangky')}}"><i class="fa fa-lock"></i> Đăng ký</a></li>
 
 					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-					<li><a href="{{URL::to('/show_giohang')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+					<li><a href="{{URL::to('/dangnhap')}}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 				
 					<?php
 					}
@@ -123,6 +123,20 @@
 					</ul>
 				</div>
 			</div><!--/brands_products-->
+			<div class="mass_products">
+				<h2 >Lọc theo kg</h2>
+				<div class="mass-name">
+						<form>
+						@csrf
+							<ul class="nav nav-pills nav-stacked" name="sort" id="sort">
+								<!-- <option value="{{Request::url()}}?sort_by=none">lọc</option> -->
+								<li><a style="color: black" href="{{Request::url()}}?sort_by=1-50">1kg-50kg</a></li>
+								<li><a style="color: black" href="{{Request::url()}}?sort_by=100-500">100kg-500kg</a></li>
+							</ul>
+
+						</form>
+				</div>
+			</div>
 			<div class="price-range">
 				<h2 for="amount" >Lọc giá theo</h2>
 				<form>

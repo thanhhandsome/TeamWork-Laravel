@@ -85,94 +85,18 @@ class Admincontroller extends Controller
 
     }
     
-    
-       
-     
-
-      
-    
-
-    public function save_dk(Request $request)
-    {
-        $data = array();
-        $data['name']=$request->name;
-        $data['email']=$request->email;
-        $data['password']=bcrypt($request->password);
-        $data['phone']=$request->sdth;
-        $data['diachi']=$request->diachi;
-        $data['ngaysinh']=$request->ngaysinh;
-    
-       
-        // echo '<pre>';
-        // print_r($data);
-        // echo '</pre>';
-        DB::table('admin')->insert($data);
-        return Redirect::to('/dangky-nv');
-    }
-
     public function dash()
-    {
-        return view('admin.dashboard');
-    }
-
-    public function all_nv()
-    {   
-        
-        $user = User::with('roles','permissions')->orderBy('id','DESC')->get();
-        $manager_nv = view('admin.all_nvien')->with('all_nv',$user);
-
-        return view ('admin_layout')->with('admin.all_nvien',$manager_nv);
-      
-    }
-    public function dang_ky_nv()
-    {
-        return view ('admin.dang_ky');
-    }
-    public function Postlogin(Request $request)
-    {  
-        //dd($re->all());
-        
-        $email = $request['email'];
-        $matkhau = $request['password'];
-        // dd($request->all());
-       //lay gioi han 1 user
-        
-    
-
-       
-    
-    if(Auth::attempt(['email' => $email, 'password' => $matkhau]))
-    {   
-
-        // return Redirect::to('/dashboard');
-        // auth()->user()->assignRole('nhanvien');
-        // dd(auth()->user());
-        // auth()->assignRole('nhanvien');
-        
-      
-        return Redirect::to('/dashboard');
-
-    }
-    else
-    {
-        return Redirect::to('/admin');
-    }
-    
-
-
-        // else
-        // {
-        //     $a=Auth::user('admin');
-        //     echo'<pre>';
-        //     print_r($a);
-        //     echo'</pre>';
-        // }
-
+    {   $sum_product=DB::table('chitietsp')->sum('soluongsp');
+        $sp_ban_chay=DB::table('chitietdh')->selectRaw('chitietsp.soluongsp,chitietdh.masp,sanpham.tensp,sum(chitietdh.soluong) as a')
+        ->join('sanpham','sanpham.masp','=','chitietdh.masp')
+        ->join('chitietsp','chitietsp.masp','=','sanpham.masp')
+        ->orderBy('chitietdh.masp','desc')->groupBy('chitietdh.masp')->get();
+        // dd($sp_ban_chay);
+        return view('admin.dashboard')->with('sp_ban_chay',$sp_ban_chay)->with('sum_product',$sum_product);
     }
     
     
        
-     
 
       
     
@@ -194,6 +118,91 @@ class Admincontroller extends Controller
         DB::table('admin')->insert($data);
         return Redirect::to('/dangky-nv');
     }
+
+    // public function dash()
+    // {
+    //     return view('admin.dashboard');
+    // }
+
+    // public function all_nv()
+    // {   
+        
+    //     $user = User::with('roles','permissions')->orderBy('id','DESC')->get();
+    //     $manager_nv = view('admin.all_nvien')->with('all_nv',$user);
+
+    //     return view ('admin_layout')->with('admin.all_nvien',$manager_nv);
+      
+    // }
+    // public function dang_ky_nv()
+    // {
+    //     return view ('admin.dang_ky');
+    // }
+    // public function Postlogin(Request $request)
+    // {  
+    //     //dd($re->all());
+        
+    //     $email = $request['email'];
+    //     $matkhau = $request['password'];
+    //     // dd($request->all());
+    //    //lay gioi han 1 user
+        
+    
+
+       
+    
+    // if(Auth::attempt(['email' => $email, 'password' => $matkhau]))
+    // {   
+
+    //     // return Redirect::to('/dashboard');
+    //     // auth()->user()->assignRole('nhanvien');
+    //     // dd(auth()->user());
+    //     // auth()->assignRole('nhanvien');
+        
+      
+    //     return Redirect::to('/dashboard');
+
+    // }
+    // else
+    // {
+    //     return Redirect::to('/admin');
+    // }
+    
+
+
+    //     // else
+    //     // {
+    //     //     $a=Auth::user('admin');
+    //     //     echo'<pre>';
+    //     //     print_r($a);
+    //     //     echo'</pre>';
+    //     // }
+
+    // }
+    
+    
+       
+     
+
+      
+    
+
+    // public function save_dk(Request $request)
+    // {
+    //     $data = array();
+    //     $data['name']=$request->name;
+    //     $data['email']=$request->email;
+    //     $data['password']=bcrypt($request->password);
+    //     $data['phone']=$request->sdth;
+    //     $data['diachi']=$request->diachi;
+    //     $data['ngaysinh']=$request->ngaysinh;
+    
+       
+    //     // echo '<pre>';
+    //     // print_r($data);
+    //     // echo '</pre>';
+    //     DB::table('admin')->insert($data);
+    //     return Redirect::to('/dangky-nv');
+    // }
 
 
 

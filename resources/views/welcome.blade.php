@@ -114,6 +114,27 @@
                       " - đ" + $( "#slider-range" ).slider( "values", 1 ) );
                   });
             </script>
+             <script>
+            $(document).ready(function(){
+                $('#test').on('click',function(e){
+                  e.preventDefault();
+                 var id =$('#check').val();
+                  $.ajax({
+                      method: "POST",
+                      url: "/huydon/"+id,
+                      data: "data",
+                      dataType: {id},
+                      success: function (data) 
+                        {
+                         
+                        alert('thanh cong');
+                       
+                          
+                      }
+                  });
+              }
+
+              </script>
             <script type="text/javascript">
             $(document).ready(function() {
             $('#imageGallery').lightSlider({

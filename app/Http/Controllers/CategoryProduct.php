@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\LoaiSP;
 use App\loaisanpham;
+use Illuminate\Support\Carbon;
 // use App\sanpham;
 // use App\chitietsp;
 session_start();
@@ -80,27 +81,25 @@ class CategoryProduct extends Controller
     {
         $cate_product = DB::table('loaisanpham')->orderby('maloai','desc')->get();
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
-        $category_by_id = DB::table('sanpham')->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')->join('chitietsp','sanpham.masp','=','chitietsp.masp')->where('loaisanpham.slug_loaisp',$category_id)->orderby('gia','asc')->paginate(5);
-        $category_name = DB::table('loaisanpham')->where('loaisanpham.slug_loaisp',$category_id)->limit(1)->get();
-        // $category_by_slug = loaisanpham::where('slug_loaisp',$category_id)->get();
-        // foreach ($category_by_slug as $key => $cate) {
-        //     $category_id = $cate->maloai;
-        // }
+        $category_by_id = DB::table('sanpham')->join('loaisanpham','sanpham.maloai','=','loaisanpham.maloai')->join('chitietsp','sanpham.masp','=','chitietsp.masp')->where('loaisanpham.slug_loaisp',$category_id)->orderby('gia','asc')->paginate(6);
+        $hinh = DB::table('hinhanh')->where('status','1')->get();
+  
+        $product_km = DB::table('sanpham')
+        ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+        ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+        ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
+        ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+        ->get(); 
+ 
 
-        // $min_price = sanpham::min('gia');
-        // $max_price = sanpham::max('gia');
-        // // $max_price_range = $max_price + 1000000;
+ 
+ 
+        $time=Carbon::now('Asia/Ho_Chi_Minh');
+    
 
-        // if(isset($_GET['start_price']) && isset($_GET['end_price']))
-        // {
-        //     $min_price = $_GET['start_price'];
-        //     $max_price = $_GET['end_price'];
-        //     $category_by_id = sanpham::with('category')->whereBetween('gia',[$min_price,$max_price])->orderby('gia','asc')->paginate(5);
-        // }
-        // else{
 
-        //     $category_by_id = sanpham::with('category')->where('maloai',$category_id)->orderby('masp','desc')->paginate(5);
-        // }
-        return view ('pages.category.show_category')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('category_by_id',$category_by_id)->with('category_name',$category_name);
+        $category_name = DB::table('loaisanpham')->where('loaisanpham.maloai',$category_id)->limit(1)->get();
+        
+        return view ('pages.category.show_category')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('category_by_id',$category_by_id)->with('category_name',$category_name)->with('hinh',$hinh)->with('product_km',$product_km)->with('time',$time);
     }
 }

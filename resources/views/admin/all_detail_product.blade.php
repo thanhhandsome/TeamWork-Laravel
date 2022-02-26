@@ -41,6 +41,8 @@
             <th>Tên sản phẩm</th>
             <th>Khối lượng</th>
             <th>Kích thước</th>
+            <th>Số lượng</th>
+            <th>Tình trạng</th>
             
             
             <th style="width:30px;"></th>
@@ -52,10 +54,17 @@
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td style="width:10px">{{ $cat_pro->mactsp }}</td>
-            <td style="width:200px">{{ $cat_pro->tensp }}</td>
+            <td style="width:200px"><a href="{{URL::to('/all-img/'.$cat_pro->mactsp)}}" style="color:darkblue">{{ $cat_pro->tensp }}</a></td>
             <td>{{ $cat_pro->khoiluong}}</td>
             <td>{{ $cat_pro->kichthuoc }}</td>
-            
+            <td>{{ $cat_pro->soluongsp }}</td>
+   
+            @if($cat_pro->soluongsp>0)
+            <td><p style="color:green">Còn hàng</p></td>
+            @else
+            <td><p style="color: red">Hết hàng</p></td>
+            @endif
+   
            
             
             <td>
@@ -74,19 +83,14 @@
     <footer class="panel-footer">
       <div class="row">
         
-        {{-- <div class="col-sm-5 text-center">
+         <div class="col-sm-5 text-center">
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-        </div> --}}
-        {{-- <div class="col-sm-7 text-right text-center-xs">                
+        </div> 
+        <div class="col-sm-7 text-right text-center-xs">                
           <ul class="pagination pagination-sm m-t-none m-b-none">
-            <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-            <li><a href="">1</a></li>
-            <li><a href="">2</a></li>
-            <li><a href="">3</a></li>
-            <li><a href="">4</a></li>
-            <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+            {!!$all_product_detail->links()!!}
           </ul>
-        </div> --}}
+        </div> 
       </div>
     </footer>
   </div>

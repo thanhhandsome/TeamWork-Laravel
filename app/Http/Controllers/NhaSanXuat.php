@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\NhaSX;
+use Illuminate\Support\Carbon;
 session_start();
 
 class NhaSanXuat extends Controller
@@ -71,6 +72,21 @@ class NhaSanXuat extends Controller
         $cate_brand = DB::table('nhasx')->orderby('mansx','desc')->get();
         $brand_by_id = DB::table('sanpham')->join('nhasx','sanpham.mansx','=','nhasx.mansx')->join('chitietsp','sanpham.masp','=','chitietsp.masp')->where('sanpham.mansx',$brand_id)->get();
         $brand_name = DB::table('nhasx')->where('nhasx.mansx',$brand_id)->limit(1)->get();
-        return view ('pages.brand.show_brand')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name);
+        
+        $hinh = DB::table('hinhanh')->where('status','1')->get();
+        //them km
+        $product_km = DB::table('sanpham')
+            ->join('nhasx', 'sanpham.mansx', '=','nhasx.mansx')
+            ->join('loaisanpham', 'sanpham.maloai', '=', 'loaisanpham.maloai')
+            ->join('chitietkm','sanpham.masp','=','chitietkm.masp')
+            ->join('khuyemai','chitietkm.makm','=','khuyemai.makm')
+            ->get(); 
+        //gio hien tai
+        $time=Carbon::now('Asia/Ho_Chi_Minh');
+        return view ('pages.brand.show_brand')->with('cate_product',$cate_product)->with('brand_product',$cate_brand)
+        ->with('brand_by_id',$brand_by_id)->with('brand_name',$brand_name)
+        ->with('hinh',$hinh)
+        ->with('product_km',$product_km)
+        ->with('time',$time);
     }
 }

@@ -27,8 +27,7 @@
                             <input type="email" name="email" placeholder="Tài khoản" />
                             <input type="password" name="password" placeholder="Password" />
                             <span>
-                                <input type="checkbox" class="checkbox"> 
-                                Ghi nhớ đăng nhập
+                               <a href="{{URL::to('/forget-pass')}}"> Quên tài khoản</a>
                             </span>
                             <button type="submit" class="btn btn-default">Đăng nhập</button>
                  </form>

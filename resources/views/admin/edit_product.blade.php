@@ -55,10 +55,7 @@
 
                                 </div>
                               
-                                <!-- <div class="form-group">
-                                    <label for="exampleInputPassword1">Mô tả </label>
-                                    <textarea type="Text" value="{{$edit_value->mota}}" name="product_inf" class="form-control" id="exampleInputPassword1" placeholder="Password"></textarea>
-                                </div> -->
+                                
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">loai san pham</label>

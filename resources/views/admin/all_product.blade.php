@@ -1,7 +1,16 @@
 @extends('admin_layout')
 @section('admin_content')
-    
-
+@if(Session('message')) 
+<div class="alert alert-danger">
+  <ul>
+      
+          <li>
+            {{Session('message')}}
+          </li>
+     
+  </ul>
+</div>
+@endif
 <div class="table-agile-info">
     <div class="panel panel-default">
     <div class="panel-heading">
@@ -39,13 +48,12 @@
             </th>
             <th >Mã </th>
             <th>Tên sản phẩm</th>
-            <th>Số lượng</th>
             <th>Giá</th>
             <th>Hình</th>
-            <th>Mô tả</th>
+            <th>Tình Trạng</th>
             <th>NSX</th>
             <th>Loại</th>
-            
+
             <th style="width:30px;"></th>
           </tr>
         </thead>
@@ -56,20 +64,22 @@
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
             <td>{{ $cat_pro->masp }}</td>
             <td>{{ $cat_pro->tensp }}</td>
-            <td>{{ $cat_pro->soluong }}</td>
             <td>{{ $cat_pro->gia }}</td>
-            <td>{{ $cat_pro->hinh }}</td>
-            <td>{{ $cat_pro->mota }}</td>
+            
+            <td>  <img width="120px" height="120px" src="{{URL::to('public/frontend/img/'.$cat_pro->hinh)}}"/></td>           
             <td>{{ $cat_pro->tennsx }}</td>
+     
+
             <td><span class="text-ellipsis">{{ $cat_pro->tenloai }}</span></td>
             
             <td>
               <a href="{{URL::to('/edit-product/'.$cat_pro->masp)}}" class="active" ui-toggle-class="">
               <i class="fa fa-pencil-square text-success text-active"></i></a>
               <a onclick="return confirm('Ban co that su muon xoa?')" href="{{URL::to('/del-product/'.$cat_pro->masp)}}" class="active" ui-toggle-class="">
+
               <i class="fa fa-times text-danger text"></i></a>
             </td>
-         
+          </td></td>
           </tr>
           @endforeach
         </tbody>
@@ -77,11 +87,8 @@
     </div>
     <footer class="panel-footer">
       <div class="row">
-        
 
-        <div class="col-sm-5 text-center">
-
-        {{-- <div class="col-sm-5 text-center">
+         <div class="col-sm-5 text-center">
 
           <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
         </div>

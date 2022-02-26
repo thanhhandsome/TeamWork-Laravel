@@ -30,7 +30,7 @@
                         <input type="email" name="email" placeholder="Email"/>
                     </div>
                     <div>
-                        <input type="text" name="phone" placeholder="Số điện thoại"/>
+                        <input type="tel" name="phone" placeholder="Số điện thoại" pattern="(0[3|5|7|8|9])+([0-9]{8})"/>
                     </div>
                     <div>
                         <input type="text" name="address" placeholder="Địa Chỉ"/>

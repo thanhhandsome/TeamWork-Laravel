@@ -25,8 +25,8 @@ class Productdetailcontroller extends Controller
     }
     public function all_product_detail()
     {   $all_product_detail = DB::table('chitietsp')
-        ->join('sanpham', 'sanpham.masp', '=','chitietsp.masp')
-        ->get();
+        ->join('sanpham', 'sanpham.masp', '=','chitietsp.masp')->orderBy('soluongsp','desc')
+        ->paginate(5);
         
         $manager_product = view('admin.all_detail_product')
         ->with('all_product_detail',$all_product_detail);
@@ -44,12 +44,16 @@ class Productdetailcontroller extends Controller
     public function save_product_detail(Chitietspreq $request)
     {
         $data = array();
+        $data['mactsp'] = $request->product_id;
         $data['masp'] = $request->product_ctsp;
         $data['khoiluong'] = $request->product_kl;
         $data['kichthuoc'] = $request->product_kt;
-        $data['mactsp'] = $request->product_id;
+        $data['mota'] = $request->mota;
+        $data['mausac'] = $request->mau;
+        $data['soluongsp'] = $request->sl;
+       
         
-         DB ::table('chitietsp')->insert($data);
+         DB::table('chitietsp')->insert($data);
          Session()->put('message','Thêm thành công');
          return Redirect::to('add-product-detail');
     }
@@ -59,17 +63,17 @@ class Productdetailcontroller extends Controller
      
         $data['khoiluong'] = $request->product_kl;
         $data['kichthuoc'] = $request->product_kt;
+        $data['soluongsp'] = $request->sl;
         $data['masp'] = $request->product_masp;
       
-          echo'<pre>';
-       print_r($data);
-      echo'</pre>';
+    //       echo'<pre>';
+    //    print_r($data);
+    //   echo'</pre>';
         DB::table('chitietsp')->where('mactsp',$product_id)->update($data);
-        Session()->put('message','cap nhat chi tiet san pham thanh cong thanh cong');
-        return Redirect::to('all-product-detail');
+        return Redirect::to('all-product-detail')->with('message','cap nhat chi tiet san pham thanh cong thanh cong');
 
     }
-    public function del_product($product_id)
+    public function del_product_detail($product_id)
     {    
         DB::table('chitietsp')->where('mactsp',$product_id)->delete();
         Session()->put('message','cap nhat danh muc thanh cong');

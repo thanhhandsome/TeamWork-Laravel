@@ -9,30 +9,41 @@
                 <!--sign up form-->
                <h3>Thông tin khác hàng</h3>
                @if(count($errors)>0)
-               <div class="alert alert-danger">
-                   <ul>
-                       @foreach ($errors->all() as $err)
-                           <li>
-                               {!!$err  !!}
-                           </li>
-                       @endforeach
-                   </ul>
-               </div>
-           @endif
+                 <div class="alert alert-danger">
+                     <ul>
+                         @foreach ($errors->all() as $err)
+                             <li>
+                                 {!!$err  !!}
+                             </li>
+                         @endforeach
+                     </ul>
+                 </div>
+                @endif
+                 <?php 
+                    $name = Session()->get('name');
+                    $add = Session()->get('diachi');
+                    $phone = Session()->get('phone');
+                    $email = Session()->get('email');
+                    $id = Session()->get('makh');
+                 ?>
                 <form action="{{URL::to('/save-info')}}" method="POST" role="form">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     
                     <div>
-                        <input type="text" value="{{ Auth::user()->name }}" class="form-control" name="name" placeholder="{{ Auth::user()->name }}">
+                        <input type="hidden" value="<?php echo $id ?>" class="form-control" name="id" placeholder="Tên">
  
                     </div>
                     <div>
-                        <input type="email" value="{{ Auth::user()->email }}" readonly name="email" placeholder="{{ Auth::user()->email }}"/>
+                        <input type="text" value="<?php echo $name ?>" class="form-control" name="name" placeholder="Tên">
+ 
                     </div>
                     <div>
-                        <input type="text" value="{{ Auth::user()->diachi}} "class="form-control"name="address"placeholder="{{ Auth::user()->diachi }}"/>
+                        <input type="email" value="<?php echo $email ?>" readonly name="email" placeholder="Email"/>
                     </div>
-                        <input type="text" value="{{Auth::user()->phone }}"class="form-control" name="phone" placeholder="{{ Auth::user()->phone }}"/>
+                    <div>
+                        <input type="text" value="<?php echo $add?>"class="form-control"name="address"placeholder="Địa chỉ"/>
+                    </div>
+                        <input type="text" value="<?php echo $phone ?>"class="form-control" name="phone" placeholder="Số điện thoại"/>
                     <div class="form-group" >
                         <input type="password" class="form-control" id="ipnPassword">
                         {{-- <button style="background: #FE980F;
